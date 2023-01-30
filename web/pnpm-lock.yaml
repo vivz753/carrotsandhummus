@@ -14,7 +14,7 @@ specifiers:
   postcss: ^8.4.21
   postcss-loader: ^7.0.2
   prettier: ^2.8.3
-  prettier-plugin-tailwindcss: ^0.2.1
+  prettier-plugin-tailwindcss: ^0.2.2
   react: 18.2.0
   react-dom: 18.2.0
   stripe: ^11.6.0
@@ -33,7 +33,6 @@ dependencies:
   eslint: 8.31.0
   eslint-config-next: 13.1.1_iukboom6ndih5an6iafl45j2fe
   next: 13.1.1_biqbaboplfbrettd7655fr4n2y
-  prettier: 2.8.3
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   stripe: 11.6.0
@@ -47,6 +46,7 @@ devDependencies:
   clsx: 1.2.1
   postcss: 8.4.21
   postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
+  prettier: 2.8.3
   prettier-plugin-tailwindcss: 0.2.2_prettier@2.8.3
   tailwindcss: 3.2.4_postcss@8.4.21
 
@@ -2333,6 +2333,7 @@ packages:
     resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+    dev: true
 
   /prop-types/15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}

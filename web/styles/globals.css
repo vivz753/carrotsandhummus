@@ -1,3 +1,22 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@font-face {
+	font-family: "Dunkin";
+	src: url("/fonts/PS_Dunkin/Dunkin.otf") format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Nunito";
+	src: url("/fonts/nunito/Nunito-Regular.ttf") format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+	font-family: "Nunito";
+	font-weight: 400;
+}
