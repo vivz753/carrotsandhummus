@@ -9,9 +9,12 @@ import groq from "groq";
 export const merchQuery = groq`
 *[_type=="merch"]{
     name,
-    description,
+    artist,
     price,
+    stock,
+    description,
+    size,
+    category,
     "id": _id,
     "image": image.asset->url,
-    currency
   }`;

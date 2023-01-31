@@ -1,8 +1,11 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import Head from "next/head"
 import { Navbar } from "./Navbar"
+import { SideCart } from "./SideCart"
 
 const Layout: FC<React.PropsWithChildren> = ({ children }) => {
+  const [sideCart, setSideCart] = useState(false)
+
   return (
     <>
       <Head>
@@ -12,10 +15,13 @@ const Layout: FC<React.PropsWithChildren> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="relative flex flex-col  min-h-screen overflow-auto">
-          <Navbar />
+        <div className="relative flex h-screen w-full flex-col overflow-auto">
+          <Navbar setSideCart={setSideCart} />
           {/* Page w/ content */}
-          <div className="pt-20 min-h-screen h-full flex justify-center items-center">{children}</div>
+          <div className="flex h-full min-h-screen items-center justify-center pt-20">
+            <SideCart view={sideCart} />
+            {children}
+          </div>
         </div>
       </main>
     </>

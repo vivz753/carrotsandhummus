@@ -9,6 +9,24 @@ export default {
       type: "string",
     },
     {
+      name: "artist",
+      title: "Artist",
+      description: "who it was created by",
+      type: "string",
+    },
+    {
+      name: "price",
+      title: "Price",
+      description: "For now, add cents as zeroes, ie 500 = $5",
+      type: "number",
+    },
+    {
+      name: "stock",
+      title: "Stock",
+      description: "amount available for sale",
+      type: "number",
+    },
+    {
       name: "description",
       title: "Description",
       type: "text",
@@ -24,24 +42,6 @@ export default {
       title: "Category",
       description: "i.e. sticker, print, card",
       type: "string",
-    },
-    {
-      name: "quantity",
-      title: "Quantity",
-      description: "amount in stock",
-      type: "number",
-    },
-    {
-      name: "artist",
-      title: "Artist",
-      description: "who it was created by",
-      type: "string",
-    },
-    {
-      name: "price",
-      title: "Price",
-      description: "For now, add cents as zeroes, ie 500 = $5",
-      type: "number",
     },
     {
       name: "currency",
