@@ -17,7 +17,7 @@ export default {
     {
       name: "price",
       title: "Price",
-      description: "For now, add cents as zeroes, ie 500 = $5",
+      description: "IMPORTANT: add 2 extra digits, i.e 500 for 5 USD",
       type: "number",
     },
     {
@@ -34,7 +34,7 @@ export default {
     {
       name: "size",
       title: "Size",
-      description: "i.e. 3x3",
+      description: `i.e. 3x3"`,
       type: "string",
     },
     {
@@ -46,7 +46,7 @@ export default {
     {
       name: "currency",
       title: "Currency",
-      description: "Keep this 'usd' for the purposes of this tutorial",
+      description: "Keep this 'USD'",
       type: "string",
     },
     {
@@ -59,6 +59,6 @@ export default {
     },
   ],
   initialValue: {
-    currency: "usd",
+    currency: "USD",
   },
 }
