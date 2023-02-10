@@ -44,7 +44,7 @@ export const SideCartItem: FC<{
           <span className="relative w-12 text-center text-xl">
             <input
               value={quantity}
-              onChange={(e) => setCartQuantity(e.target.value)}
+              // onChange={(e) => setCartQuantity(e.target.value)}
               className="w-full rounded-md border py-1 text-center"
             />
             <div className="absolute bottom-0 flex w-12 translate-y-full flex-row justify-center pt-1">
