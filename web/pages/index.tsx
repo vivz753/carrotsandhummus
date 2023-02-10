@@ -5,7 +5,7 @@ import Link from "next/link"
 const Home: NextPage = () => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-5">
-      <span className="text-xl">it's a carrot world</span>
+      <span className="text-xl">a carrot world</span>
       <Map />
     </div>
   )
