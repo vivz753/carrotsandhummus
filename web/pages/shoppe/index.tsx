@@ -33,7 +33,7 @@ const ProductCard: FC<{ product: Product }> = ({ product }) => {
           <MissingImage />
         )}
       </div>
-      <span>{description}</span>
+      <span className="mb-5">{description}</span>
       <button
         onClick={() => addToCart(product)}
         className="smooth-transition my-5 mt-auto h-10 w-10 select-none rounded-lg bg-p5 text-white hover:scale-110"
