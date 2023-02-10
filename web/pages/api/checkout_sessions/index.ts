@@ -29,8 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           allowed_countries: ["US"],
         },
         line_items,
-        success_url: `${req.headers.origin}/?success=true`,
-        cancel_url: `${req.headers.origin}/shoppe/preview`,
+        success_url: `${req.headers.origin}/shoppe/preview?transaction=success`,
+        cancel_url: `${req.headers.origin}/shoppe/preview?transaction=failed`,
       }
       const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params)
       // res.redirect(303, checkoutSession.url)
