@@ -16,7 +16,7 @@ export const Button: FC<{
     size === "xs" ? "p-2 px-5" : size === "sm" ? "h-[49px] text-[20px] px-7" : "h-[66px] text-[24px] px-[36px]"
   const baseStyle = "whitespace-nowrap rounded-md smooth-transition"
   const disabledStyle =
-    "cursor-not-allowed after:bg-white after:w-full after:absolute after:h-full after:opacity-50 after:rounded-md"
+    "relative cursor-not-allowed after:bg-white after:w-full after:absolute after:h-full after:opacity-50 after:rounded-md"
   return (
     <ConditionalWrapper condition={!!href} wrapper={(children) => <Link href={href ?? ""}>{children}</Link>}>
       <button

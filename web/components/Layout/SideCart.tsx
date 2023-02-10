@@ -1,7 +1,6 @@
 import { FC, Dispatch, SetStateAction, useEffect } from "react"
 import clsx from "clsx"
 import { SideCartItem } from "./SideCartItem"
-import Link from "next/link"
 import { useShoppingCart } from "use-shopping-cart"
 import Image from "next/image"
 import { Button } from "@components/core"
@@ -32,26 +31,32 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
         </div>
         <div className="flex h-full w-full grow-0 flex-col justify-between rounded-bl-xl border-2 border-p5 bg-blue-200">
           {/* Items container */}
-          <div className=" w-full overflow-auto">
-            {cartItems.map(([id, data]) => (
-              <SideCartItem
-                key={id}
-                cartItemId={id}
-                name={data.name}
-                category={data.category}
-                quantity={data.quantity}
-                image={data.image ?? ""}
-                price={data.price}
-              />
-            ))}
-          </div>
-          {/* Clear Cart Button */}
-          {cartItems.length > 0 && <button onClick={clearCart}>Clear Cart</button>}
-          {/* Checkout Button */}
           {cartItems.length > 0 ? (
-            <Button wide size="sm" variant="solid3" href="/shoppe/preview" onClick={() => setView(false)}>
-              Checkout
-            </Button>
+            <>
+              <div className=" w-full overflow-auto">
+                {cartItems.map(([id, data]) => (
+                  <SideCartItem
+                    key={id}
+                    cartItemId={id}
+                    name={data.name}
+                    category={data.category}
+                    quantity={data.quantity}
+                    image={data.image ?? ""}
+                    price={data.price}
+                  />
+                ))}
+              </div>
+              <div className="flex flex-col">
+                {/* TODO: add a confirmation modal */}
+                <button className="ml-auto max-w-max rounded-md bg-red-500 p-1" onClick={clearCart}>
+                  Clear Cart
+                </button>
+
+                <Button wide size="sm" variant="solid3" href="/shoppe/preview" onClick={() => setView(false)}>
+                  Checkout
+                </Button>
+              </div>
+            </>
           ) : (
             <div className="flex h-full flex-col items-center justify-center gap-5">
               <span>{`"hey,"`}</span>
