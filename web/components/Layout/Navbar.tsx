@@ -13,8 +13,10 @@ export const Navbar: FC<{ setSideCart: Dispatch<SetStateAction<boolean>> }> = ({
           {label}
         </Link>
       ))}
-      <button className="ml-auto" onClick={() => setSideCart((view) => !view)}>
-        <CartIcon className="h-8 w-8 stroke-white" />
+      <button className="ml-auto">
+        <Link href="/shoppe/preview">
+          <CartIcon className="h-8 w-8 stroke-white" />
+        </Link>
       </button>
     </div>
   )

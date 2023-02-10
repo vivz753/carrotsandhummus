@@ -2,19 +2,21 @@ import Image from "next/image"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import { NextPage, GetStaticProps } from "next"
-import { FC } from "react"
+import { FC, useState } from "react"
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart"
 import { MissingImage } from "@components/core"
 import { Product } from "@types"
 
 const ProductCard: FC<{ product: Product }> = ({ product }) => {
   const { name, price, image } = product
+  // const [animation, setAnimation] = useState(false)
   const { addItem, cartDetails } = useShoppingCart()
   const addToCart = (product: Product): void => {
     // alert(`added ${product.name} to cart`) // toast
     // console.log('product', product)
     addItem(product)
     console.log("cartDetails", cartDetails)
+    // setAnimation(true)
   }
 
   const userFriendlyPrice = formatCurrencyString({
@@ -50,8 +52,13 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   return (
     <main>
       <div className="flex h-full w-screen flex-col items-center justify-center gap-5 pt-20">
-        <span className="text-3xl">Ye Olde Shoppe</span>
-        <span className="text-xl">a carrot world</span>
+        <span className="mt-20 mb-12 text-3xl">Ye Olde Shoppe</span>
+        <span>The storekeeper doesn't look too happy, but at least they're not hostile.</span>
+        <span>{`"I GUESS you can look around.."`}</span>
+        <div className="relative h-48 w-48">
+          <Image src="/images/angry/doomsdaycat.JPG" alt="doomsdaycat" fill style={{ objectFit: "contain" }} />
+        </div>
+        <span>{`"HMPH...."`}</span>
         <div className="flex w-full flex-wrap justify-center gap-10 p-20">
           {products.map((product: Product) => (
             <ProductCard key={product.id} product={product} />

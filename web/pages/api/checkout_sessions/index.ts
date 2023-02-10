@@ -18,13 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // fetch the items from Sanity
       const products = await client.fetch(merchQuery)
 
-      // console.log("products", products)
-
-      console.log("req.body", req.body)
-
       const line_items = validateCartItems(products, req.body)
-
-      console.log("line_items", line_items)
 
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
@@ -38,20 +32,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         success_url: `${req.headers.origin}/?success=true`,
         cancel_url: `${req.headers.origin}/shoppe/preview`,
       }
-      const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create({
-        submit_type: "pay",
-        mode: "payment",
-        payment_method_types: ["card"],
-        shipping_address_collection: {
-          allowed_countries: ["US"],
-        },
-        line_items: line_items,
-        success_url: `${req.headers.origin}/?success=true`,
-        cancel_url: `${req.headers.origin}/shoppe`,
-      })
-      if (!checkoutSession.url) {
-        throw new Error("checkout session URL not found")
-      }
+      const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.create(params)
       // res.redirect(303, checkoutSession.url)
       res.status(200).json(checkoutSession)
     } catch (err) {

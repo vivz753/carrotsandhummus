@@ -1,11 +1,17 @@
-import { FC, Dispatch, SetStateAction } from "react"
+import { FC, Dispatch, SetStateAction, useEffect } from "react"
 import clsx from "clsx"
 import { SideCartItem } from "./SideCartItem"
 import Link from "next/link"
 import { useShoppingCart } from "use-shopping-cart"
+import Image from "next/image"
+import { Button } from "@components/core"
 
 export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<boolean>> }> = ({ view, setView }) => {
-  const { cartDetails, clearCart } = useShoppingCart()
+  const { cartDetails, clearCart, cartCount } = useShoppingCart()
+
+  useEffect(() => {
+    if (cartCount) console.log("cart updated")
+  }, [cartCount])
 
   const cartItems = Object.entries(cartDetails ?? {})
   return (
@@ -19,10 +25,9 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
         <div className="top-0 flex w-full shrink-0 items-center justify-center rounded-tl-xl bg-p5">
           <span className="absolute text-center text-white">Ye Olde Cart</span>
           {view && (
-            <button
-              onClick={() => setView(false)}
-              className="m-2 mr-auto rounded-md bg-white p-2 px-5"
-            >{`close >`}</button>
+            <>
+              <Button onClick={() => setView(false)} variant="solid2" className="m-2 mr-auto">{`close >`}</Button>
+            </>
           )}
         </div>
         <div className="flex h-full w-full grow-0 flex-col justify-between rounded-bl-xl border-2 border-p5 bg-blue-200">
@@ -44,28 +49,37 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
           {cartItems.length > 0 && <button onClick={clearCart}>Clear Cart</button>}
           {/* Checkout Button */}
           {cartItems.length > 0 ? (
-            <Link
-              href="/shoppe/preview"
-              className="flex h-16 w-full shrink-0 items-center justify-center rounded-b-xl bg-p2 text-xl"
-            >
+            <Button wide size="sm" variant="solid3" href="/shoppe/preview" onClick={() => setView(false)}>
               Checkout
-            </Link>
+            </Button>
           ) : (
-            <div className="flex h-full flex-col justify-center">
-              <span className="flex  justify-center p-5 text-center">hey,</span>
-              <span className="flex justify-center p-5 text-center">{`>:( --insert grumpy looking shopkeeper--`}</span>
-              <span className="flex  justify-center p-5 text-center">go buy something, or... or... get out here!!</span>
+            <div className="flex h-full flex-col items-center justify-center gap-5">
+              <span>{`"hey,"`}</span>
+              <div className="relative h-48 w-48">
+                <Image
+                  src="/images/angry/magnifiedcat.JPG"
+                  fill
+                  style={{ objectFit: "contain" }}
+                  alt="angry-shopkeeper"
+                />
+              </div>
+              <span>Uh oh, the shopkeeper looks angry... </span>
+              <span>{`"go buy something, or... or... get out here!!"`}</span>
+              <Button href="/shoppe" className="mt-24">
+                Okay...
+              </Button>
             </div>
           )}
         </div>
       </div>
-      <button
+      <Button
+        variant="solid1"
         onClick={() => setView(true)}
         className={clsx(
           "smooth-transition fixed top-0 right-0 m-2 mt-24 w-24 rounded-md bg-p5 p-2 px-5",
           !view ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         )}
-      >{`open <`}</button>
+      >{`open <`}</Button>
     </>
   )
 }
