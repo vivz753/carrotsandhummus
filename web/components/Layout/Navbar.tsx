@@ -2,8 +2,8 @@ import { FC, Dispatch, SetStateAction } from "react"
 import Link from "next/link"
 import { CartIcon } from "@components/icons"
 
-const navLabels = ["Home", "About", "Contact Us"]
-const navLinks = ["/", "/about", "/contact"]
+const navLabels = ["Home", "About"]
+const navLinks = ["/", "/about"]
 
 export const Navbar: FC<{ setSideCart: Dispatch<SetStateAction<boolean>> }> = ({ setSideCart }) => {
   return (

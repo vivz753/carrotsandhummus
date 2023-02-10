@@ -1,12 +1,30 @@
 import { NextPage } from "next"
 import { FC } from "react"
 import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@components/core"
 
 const Home: NextPage = () => {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-5">
-      <span className="text-xl">a carrot world</span>
-      <Map />
+    <div className="flex h-screen w-full flex-col items-center justify-center border pt-20">
+      <div className="my-auto flex flex-col items-center gap-5">
+        <span>{`* "moew"`}</span>
+        <div className="relative h-72 w-72">
+          <Image
+            className="rounded-xl"
+            src="/images/angry/highnesscat.PNG"
+            alt="highness-cat"
+            fill
+            style={{ objectFit: "contain" }}
+          />
+        </div>
+        <Button href="/shoppe">ok 好</Button>
+      </div>
+      <div className="mt-auto flex w-full flex-col p-10">
+        <span>{`* (English): "WHO DARE ENTERS MY SHOP???????"`}</span>
+        <span>{`* (中文): "誰要進來我的店？！！！"`}</span>
+      </div>
+      {/* <Map /> */}
     </div>
   )
 }

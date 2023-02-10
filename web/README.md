@@ -18,4 +18,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] add full page view w/ description
 - [ ] add filters by artist, category, price, etc.
 - [ ] add SEO
-- [ ] working checkout function
+- [x] working checkout function
+- [x] NPC Dialogues for success/cancelled transactions
