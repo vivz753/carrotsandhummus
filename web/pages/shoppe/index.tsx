@@ -51,7 +51,7 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
     <main>
       <div className="flex h-full w-screen flex-col items-center justify-center gap-5 pt-20">
         <span className="text-3xl">Ye Olde Shoppe</span>
-        <span className="text-xl">it's a carrot world</span>
+        <span className="text-xl">a carrot world</span>
         <div className="flex w-full flex-wrap justify-center gap-10 p-20">
           {products.map((product: Product) => (
             <ProductCard key={product.id} product={product} />

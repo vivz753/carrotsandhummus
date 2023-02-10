@@ -2,6 +2,7 @@ import { FC, useState } from "react"
 import { TrashIcon, PlusCircleIcon, MinusCircleIcon } from "@components/icons"
 import { MissingImage } from "@components/core"
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
+import Image from "next/image"
 
 export const SideCartItem: FC<{
   name: string
@@ -24,9 +25,9 @@ export const SideCartItem: FC<{
   return (
     <div className="h-32 w-full shrink-0 p-2">
       <div className="flex h-full w-full flex-row items-center gap-5 rounded-2xl bg-white px-4 shadow-md">
-        <div className="flex h-16 w-16 shrink-0 rounded-xl">
+        <div className="relative flex h-16 w-16 shrink-0 grow-0 rounded-xl">
           {image ? (
-            <img src={image} className="h-full w-full"></img>
+            <Image src={image} layout="fill" alt={name}></Image>
           ) : (
             <span className="h-full w-full bg-red-200">
               <MissingImage />
