@@ -8,12 +8,10 @@ import { MissingImage } from "@components/core"
 import { Product } from "@types"
 
 const ProductCard: FC<{ product: Product }> = ({ product }) => {
-  const { name, price, image } = product
+  const { name, price, image, artist, description } = product
   // const [animation, setAnimation] = useState(false)
   const { addItem, cartDetails } = useShoppingCart()
   const addToCart = (product: Product): void => {
-    // alert(`added ${product.name} to cart`) // toast
-    // console.log('product', product)
     addItem(product)
     console.log("cartDetails", cartDetails)
     // setAnimation(true)
@@ -25,7 +23,9 @@ const ProductCard: FC<{ product: Product }> = ({ product }) => {
     language: "en-US",
   })
   return (
-    <div className="group flex w-96 flex-col items-center gap-5 rounded-xl py-10 px-5 outline">
+    <div className="group relative flex w-96 flex-col items-center gap-2 rounded-xl py-5 px-5 ring-1 ring-p5">
+      <span className="text-xl">{name}</span>
+
       <div className="smooth-transition relative h-72 w-72 transform rounded-lg group-hover:scale-105">
         {image ? (
           <Image fill className="rounded-lg" style={{ objectFit: "contain" }} alt={name} src={image}></Image>
@@ -33,16 +33,19 @@ const ProductCard: FC<{ product: Product }> = ({ product }) => {
           <MissingImage />
         )}
       </div>
-      <span>{name}</span>
-      <span>{userFriendlyPrice}</span>
-      <div className="flex w-full justify-center">
-        <button
-          onClick={() => addToCart(product)}
-          className="smooth-transition h-10 w-10 select-none rounded-lg bg-p5 text-white hover:scale-110"
-        >
-          +
-        </button>
+      <span>{description}</span>
+      <button
+        onClick={() => addToCart(product)}
+        className="smooth-transition my-5 mt-auto h-10 w-10 select-none rounded-lg bg-p5 text-white hover:scale-110"
+      >
+        +
+      </button>
+      <div className="flex w-full flex-row justify-between">
+        <span>{userFriendlyPrice}</span>
+
+        <span>by {artist}</span>
       </div>
+      <div className="flex w-full justify-center"></div>
     </div>
   )
 }
@@ -51,18 +54,20 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   console.log("products", products)
   return (
     <main>
-      <div className="flex h-full w-screen flex-col items-center justify-center gap-5 pt-20">
-        <span className="mt-20 mb-12 text-3xl">Ye Olde Shoppe</span>
-        <span>{`The storekeeper doesn't look too happy, but at least they're not hostile.`}</span>
-        <span>{`"I GUESS you can look around.."`}</span>
-        <div className="relative h-48 w-48">
-          <Image src="/images/angry/doomsdaycat.JPG" alt="doomsdaycat" fill style={{ objectFit: "contain" }} />
-        </div>
-        <span>{`"HMPH...."`}</span>
-        <div className="flex w-full flex-wrap justify-center gap-10 p-20">
-          {products.map((product: Product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+      <div className="flex h-full w-screen flex-col pt-20">
+        <div className="flex flex-col items-center justify-center gap-5 px-8 text-center">
+          <span className="mt-20 mb-12 text-3xl">Ye Olde Shoppe</span>
+          <span>{`The storekeeper doesn't look too happy, but at least they're not hostile.`}</span>
+          <span>{`"I GUESS you can look around.."`}</span>
+          <div className="relative h-48 w-48">
+            <Image src="/images/angry/doomsdaycat.JPG" alt="doomsdaycat" fill style={{ objectFit: "contain" }} />
+          </div>
+          <span>{`"HMPH...."`}</span>
+          <div className="flex w-full flex-wrap justify-center gap-10 p-20">
+            {products.map((product: Product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
         </div>
       </div>
     </main>
