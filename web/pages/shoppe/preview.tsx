@@ -1,12 +1,13 @@
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import getStripe from "@lib/stripe/getStripe"
 import axios from "axios"
 import { useShoppingCart } from "use-shopping-cart"
 
 const stripePromise = getStripe()
 export default function PreviewPage() {
+  const [loading, setLoading] = useState(false)
   const { cartDetails, redirectToCheckout } = useShoppingCart()
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -25,7 +26,7 @@ export default function PreviewPage() {
   return (
     <div className="flex h-full w-screen flex-col items-center justify-center gap-5 bg-red-500 pt-20">
       {Object.values(cartDetails).map((item) => (
-        <div className="flex h-full w-full flex-row gap-5 bg-blue-500">
+        <div key={item.id} className="flex h-full w-full flex-row gap-5 bg-blue-500">
           <div className="p-5">{item.price}</div>
           <div className="p-5">{item.name}</div>
           <div className="p-5">{item.artist}</div>
@@ -38,17 +39,18 @@ export default function PreviewPage() {
         // action="/api/checkout_sessions"
         onSubmit={async (event) => {
           event.preventDefault()
+          setLoading(true)
           const checkoutSession = await axios.post(`/api/checkout_sessions`, cartDetails, {
             headers: {
               "Access-Control-Allow-Origin": "http://localhost:3000",
             },
           })
-          console.log("checkoutSession", checkoutSession)
-          // redirectToCheckout({sessionId: checkoutSession.data.id})
+          redirectToCheckout(checkoutSession.data.id)
+          setLoading(false)
         }}
       >
         <section>
-          <button className="bg-black p-5 text-white" type="submit" role="link">
+          <button disable={loading} className="bg-black p-5 text-white disabled:bg-gray-50" type="submit" role="link">
             Checkout
           </button>
         </section>

@@ -19,13 +19,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // fetch the items from Sanity
       const products = await client.fetch(merchQuery)
 
-      console.log("products", products)
+      // console.log("products", products)
 
       console.log("req.body", req.body)
 
       const line_items = validateCartItems(products, req.body)
 
       console.log("line_items", line_items)
+      console.log('line_items product data', line_items[0].product_data)
 
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
@@ -54,8 +55,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!checkoutSession.url) {
         throw new Error("checkout session URL not found")
       }
-      res.redirect(303, checkoutSession.url)
-      // res.status(200).json(checkoutSession)
+      // res.redirect(303, checkoutSession.url)
+      res.status(200).json(checkoutSession)
       console.log('redirecting')
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : "Internal server error"
