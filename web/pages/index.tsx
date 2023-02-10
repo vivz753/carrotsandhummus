@@ -7,7 +7,7 @@ import { Button } from "@components/core"
 const Home: NextPage = () => {
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center border pt-20">
-      <div className="my-auto flex flex-col items-center gap-5">
+      <div className="my-auto flex flex-col items-center gap-5 pt-20">
         <span>{`* "moew"`}</span>
         <div className="relative h-72 w-72">
           <Image

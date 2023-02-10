@@ -17,7 +17,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
     <>
       <div
         className={clsx(
-          "smooth-transition fixed top-0 right-0 flex h-full max-h-screen w-96 flex-col pt-24 pb-14",
+          "smooth-transition fixed top-0 right-0 flex h-full max-h-screen w-full flex-col pt-24 pb-14 sm:w-96",
           view ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -29,7 +29,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
             </>
           )}
         </div>
-        <div className="flex h-full w-full grow-0 flex-col justify-between rounded-bl-xl border-2 border-p5 bg-blue-200">
+        <div className="flex h-full w-full grow-0 flex-col justify-between rounded-bl-xl border-2 border-p5 bg-blue-200 px-5 py-5">
           {/* Items container */}
           {cartItems.length > 0 ? (
             <>

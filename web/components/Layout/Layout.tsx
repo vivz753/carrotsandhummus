@@ -2,6 +2,7 @@ import { FC, useState } from "react"
 import Head from "next/head"
 import { Navbar } from "./Navbar"
 import { SideCart } from "./SideCart"
+import { Footer } from "./Footer"
 
 const Layout: FC<React.PropsWithChildren> = ({ children }) => {
   const [sideCart, setSideCart] = useState(false)
@@ -22,7 +23,7 @@ const Layout: FC<React.PropsWithChildren> = ({ children }) => {
             {children}
             <SideCart view={sideCart} setView={setSideCart} />
           </div>
-          <div className="flex h-36 w-full items-center justify-center bg-p5">ye olde footer</div>
+          <Footer />
         </div>
       </main>
     </>
