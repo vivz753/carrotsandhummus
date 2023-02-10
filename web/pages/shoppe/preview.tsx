@@ -7,7 +7,7 @@ import { useShoppingCart } from "use-shopping-cart"
 
 const stripePromise = getStripe()
 export default function PreviewPage() {
-  const {cartDetails, redirectToCheckout} = useShoppingCart()
+  const { cartDetails, redirectToCheckout } = useShoppingCart()
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search)
@@ -20,24 +20,39 @@ export default function PreviewPage() {
     }
   }, [])
 
+  console.log("cartDetails", cartDetails)
+
   return (
-		<form method="POST" action="/api/checkout_sessions" 
-    // onSubmit={async (event) => {
-    //   event.preventDefault()
-    //   const checkoutSession = await axios.post(`/api/checkout_sessions`, cartDetails, {
-    //     headers: {
-    //       "Access-Control-Allow-Origin": "http://localhost:3000"
-    //     }
-    //   })
-    //   console.log('checkoutSession', checkoutSession)
-    //   // redirectToCheckout({sessionId: checkoutSession.data.id})
-		// }}
-    >
-      <section>
-        <button type="submit" role="link">
-          Checkout
-        </button>
-      </section>
-    </form>
+    <div className="flex h-full w-screen flex-col items-center justify-center gap-5 bg-red-500 pt-20">
+      {Object.values(cartDetails).map((item) => (
+        <div className="flex h-full w-full flex-row gap-5 bg-blue-500">
+          <div className="p-5">{item.price}</div>
+          <div className="p-5">{item.name}</div>
+          <div className="p-5">{item.artist}</div>
+          <div className="p-5">{item.quantity}</div>
+        </div>
+      ))}
+      <form
+        className="p-20"
+        // method="POST"
+        // action="/api/checkout_sessions"
+        onSubmit={async (event) => {
+          event.preventDefault()
+          const checkoutSession = await axios.post(`/api/checkout_sessions`, cartDetails, {
+            headers: {
+              "Access-Control-Allow-Origin": "http://localhost:3000",
+            },
+          })
+          console.log("checkoutSession", checkoutSession)
+          // redirectToCheckout({sessionId: checkoutSession.data.id})
+        }}
+      >
+        <section>
+          <button className="bg-black p-5 text-white" type="submit" role="link">
+            Checkout
+          </button>
+        </section>
+      </form>
+    </div>
   )
 }

@@ -11,3 +11,8 @@ Now you can do the following things:
 ## To Edit Content Documents
 
 https://carrotsandhummus.sanity.studio/
+
+
+## To Deploy
+
+`npx sanity deploy`

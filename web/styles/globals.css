@@ -21,6 +21,6 @@
 	font-weight: 400;
 }
 
-.smooth-hover {
-  @apply transition duration-200 ease-[cubic-bezier(1,1,1,1)];
+.smooth-transition {
+  @apply transition duration-200 ease-in-out;
 }

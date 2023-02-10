@@ -23,8 +23,8 @@ const ProductCard: FC<{ product: Product }> = ({ product }) => {
     language: "en-US",
   })
   return (
-    <div className="group flex h-full w-96 flex-col items-center gap-5 rounded-xl py-10 px-5 outline">
-      <div className="smooth-hover relative h-72 w-72 rounded-lg group-hover:scale-105">
+    <div className="group flex w-96 flex-col items-center gap-5 rounded-xl py-10 px-5 outline">
+      <div className="smooth-transition relative h-72 w-72 transform rounded-lg group-hover:scale-105">
         {image ? (
           <Image fill className="rounded-lg" style={{ objectFit: "contain" }} alt={name} src={image}></Image>
         ) : (
@@ -36,7 +36,7 @@ const ProductCard: FC<{ product: Product }> = ({ product }) => {
       <div className="flex w-full justify-center">
         <button
           onClick={() => addToCart(product)}
-          className="smooth-hover h-10 w-10 select-none rounded-lg bg-p5 text-white hover:scale-110"
+          className="smooth-transition h-10 w-10 select-none rounded-lg bg-p5 text-white hover:scale-110"
         >
           +
         </button>
@@ -49,9 +49,10 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   console.log("products", products)
   return (
     <main>
-      <div className="flex h-full w-full flex-col items-center justify-center gap-5">
+      <div className="flex h-full w-screen flex-col items-center justify-center gap-5 pt-20">
+        <span className="text-3xl">Ye Olde Shoppe</span>
         <span className="text-xl">it's a carrot world</span>
-        <div className="flex flex-wrap gap-5">
+        <div className="flex w-full flex-wrap justify-center gap-10 p-20">
           {products.map((product: Product) => (
             <ProductCard key={product.id} product={product} />
           ))}
