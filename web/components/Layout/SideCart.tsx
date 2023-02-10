@@ -1,10 +1,10 @@
-import { FC } from "react"
+import { FC, Dispatch, SetStateAction } from "react"
 import clsx from "clsx"
 import { SideCartItem } from "./SideCartItem"
 import Link from "next/link"
 import { useShoppingCart } from "use-shopping-cart"
 
-export const SideCart: FC<{ view: boolean; setView: SetStateAction }> = ({ view, setView }) => {
+export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<boolean>> }> = ({ view, setView }) => {
   const { cartDetails, clearCart } = useShoppingCart()
 
   const cartItems = Object.entries(cartDetails ?? {})
