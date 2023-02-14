@@ -1,7 +1,7 @@
-import { useEffect } from "react"
-import { useShoppingCart } from "use-shopping-cart"
 import { NpcDialogue, ShoppingCartSummary } from "@components/core"
 import { useRouter } from "next/router"
+import { useEffect } from "react"
+import { useShoppingCart } from "use-shopping-cart"
 
 export default function PreviewPage() {
   const { clearCart, cartCount } = useShoppingCart()
@@ -25,7 +25,7 @@ export default function PreviewPage() {
 
   return (
     <div className="flex h-full min-h-screen w-screen flex-col items-center justify-center pt-20">
-      <div className="my-20 flex flex-col gap-5">
+      <div className="my-20 flex w-full flex-col items-center gap-5 px-5">
         {transactionSuccess ? (
           <NpcDialogue
             title={`The cashier gives you an awkward, but polite smile.`}

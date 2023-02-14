@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { Button, MissingImage } from "@components/core"
 import axios from "axios"
-import { useShoppingCart, formatCurrencyString } from "use-shopping-cart"
 import Image from "next/image"
-import { MissingImage, Button } from "@components/core"
+import { useState } from "react"
+import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 
 export const ShoppingCartSummary = () => {
   const [loading, setLoading] = useState(false)
@@ -13,7 +13,7 @@ export const ShoppingCartSummary = () => {
     try {
       const checkoutSession = await axios.post(`/api/checkout_sessions`, cartDetails, {
         headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000", // TODO: do I need to add the carrotsandhummus.art domain?
+          // "Access-Control-Allow-Origin": "http://localhost:3000", // TODO: do I need to add the carrotsandhummus.art domain?
         },
       })
       console.log("checkoutSession.data", checkoutSession.data)
@@ -32,14 +32,21 @@ export const ShoppingCartSummary = () => {
   console.log("cartDetails", cartDetails)
 
   return (
-    <div className="mx-20  my-10 flex flex-col gap-10 rounded-xl p-20 ring-4 ring-p5">
+    <div className="my-10 flex w-full flex-col justify-center gap-10 rounded-xl px-5 py-10 ring-4 ring-p5 lg:w-min lg:p-20">
       <span className="text-3xl">Shopping Cart</span>
       <div className="flex flex-col gap-5">
+        <div className="grid w-full auto-cols-fr grid-flow-col text-center lg:auto-cols-auto">
+          <span className="w-16 lg:w-48 ">pic</span>
+          <span className="w-auto lg:w-72">item</span>
+          <span className="w-auto lg:w-24 ">quantity</span>
+          <span className="hidden w-auto lg:block lg:w-24">artist</span>
+          <span className="w-auto lg:w-24 ">unit price</span>
+        </div>
         {/* Cart Items */}
         {cartDetails &&
           Object.values(cartDetails).map((item) => (
-            <div key={item.id} className="flex h-full w-full flex-row items-center gap-5">
-              <div className="relative flex h-48 w-48 shrink-0 grow-0 rounded-xl border">
+            <div key={item.id} className="grid max-w-full auto-cols-fr grid-flow-col items-center lg:auto-cols-auto  ">
+              <div className="relative flex h-16 w-16 shrink-0 grow-0 rounded-xl border lg:h-48 lg:w-48">
                 {item.image ? (
                   <Image
                     style={{ objectFit: "contain" }}
@@ -54,10 +61,10 @@ export const ShoppingCartSummary = () => {
                   </span>
                 )}
               </div>
-              <div className="p-5">{item.quantity}</div>x<div className="p-5">{item.name}</div>
-              <div className="p-5">{item.artist}</div>
-              <div className="bg-green-500 p-5 text-white">{item.currency}</div>
-              <div className="p-5">
+              <div className="w-min text-center lg:w-72 lg:p-8">{item.name}</div>
+              <div className="p-2 text-center lg:w-24">{item.quantity}</div>
+              <div className="hidden p-2 text-center lg:block lg:w-24">{item.artist}</div>
+              <div className="p-2 text-center lg:w-24">
                 {formatCurrencyString({
                   value: item.price,
                   currency: "USD",

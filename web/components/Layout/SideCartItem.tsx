@@ -1,8 +1,8 @@
-import { FC, useState } from "react"
-import { TrashIcon, PlusCircleIcon, MinusCircleIcon } from "@components/icons"
 import { MissingImage } from "@components/core"
-import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
+import { MinusCircleIcon, PlusCircleIcon, TrashIcon } from "@components/icons"
 import Image from "next/image"
+import { FC } from "react"
+import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 
 export const SideCartItem: FC<{
   name: string
