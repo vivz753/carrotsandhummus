@@ -11,7 +11,7 @@ export const ShoppingCartSummary = () => {
   const checkout = async () => {
     setLoading(true)
     try {
-      const checkoutSession = await axios.post(`/api/checkout_sessions`, cartDetails, {
+      const checkoutSession = await axios.post(`/api/stripe/checkout`, cartDetails, {
         headers: {
           // "Access-Control-Allow-Origin": "http://localhost:3000", // TODO: do I need to add the carrotsandhummus.art domain?
         },

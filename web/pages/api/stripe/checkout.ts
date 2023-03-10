@@ -1,16 +1,18 @@
+// Endpoint: `/api/stripe/checkout`
+// Type: POST
+// Purpose: Used to perform checkout order with Stripe
 import { NextApiRequest, NextApiResponse } from "next"
 import Stripe from "stripe"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
+import getStripe from "lib/stripe/getStripe"
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { validateCartItems } = require("use-shopping-cart/utilities")
 
 // import { formatAmountForStripe } from '../../../utils/stripe-helpers'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "", {
-  apiVersion: "2022-11-15",
-})
+const stripe = getStripe()
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
