@@ -1,27 +1,13 @@
 import { NpcDialogue, ShoppingCartSummary } from "@components/core"
 import { useRouter } from "next/router"
-import { useEffect } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
 export default function PreviewPage() {
-  const { clearCart, cartCount } = useShoppingCart()
+  const { cartCount } = useShoppingCart()
   const router = useRouter()
   const { transaction } = router.query
   const transactionSuccess = transaction === "success"
   const transactionFailed = transaction === "failed"
-
-  useEffect(() => {
-    // Check to see if this is a redirect back from Checkout
-    if (transactionSuccess) {
-      console.log("Order placed! You will receive an email confirmation.")
-      clearCart()
-    }
-
-    // if (transactionFailed) {
-    //   console.log("Order canceled -- continue to shop around and checkout when you’re ready.")
-    //   // display some annoyed cashier face
-    // }
-  }, [transactionSuccess, clearCart])
 
   return (
     <div className="flex h-full min-h-screen w-screen flex-col items-center justify-center pt-20">

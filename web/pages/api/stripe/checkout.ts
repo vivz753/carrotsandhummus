@@ -13,6 +13,8 @@ const { validateCartItems } = require("use-shopping-cart/utilities")
 
 // import { formatAmountForStripe } from '../../../utils/stripe-helpers'
 const stripe = getStripe()
+const salesTaxId = process.env.STRIPE_SALES_TAX_ID
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
     try {
@@ -21,7 +23,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log("products", products)
       console.log("req.body", req.body)
 
-      const line_items = validateCartItems(products, req.body)
+      const line_items = validateCartItems(products, req.body).map((itemToAddTax: any) => {
+        console.log(itemToAddTax)
+        return {
+          ...itemToAddTax,
+          tax_rates: [
+            salesTaxId
+          ],
+        }
+      })
 
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
