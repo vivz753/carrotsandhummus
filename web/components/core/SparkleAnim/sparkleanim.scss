@@ -1,0 +1,29 @@
+@keyframes grow-and-shrink {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+.anim-grow-and-shrink {
+	animation: grow-and-shrink 850ms ease-in-out forwards;
+}
+
+.anim-spin {
+	animation: spin 1000ms linear infinite forwards;
+}

@@ -1,3 +1,4 @@
 export * from "./CartIcon"
-export * from "./TrashIcon"
 export * from "./CircleIcons"
+export * from "./SparkleIcon"
+export * from "./TrashIcon"

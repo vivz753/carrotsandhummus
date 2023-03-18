@@ -1,13 +1,21 @@
 import { NpcDialogue, ShoppingCartSummary } from "@components/core"
 import { useRouter } from "next/router"
+import { useEffect } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
 export default function PreviewPage() {
-  const { cartCount } = useShoppingCart()
+  const { cartCount, clearCart } = useShoppingCart()
   const router = useRouter()
   const { transaction } = router.query
   const transactionSuccess = transaction === "success"
   const transactionFailed = transaction === "failed"
+
+  useEffect(() => {
+    if (transactionSuccess) {
+      console.log("transaction successful")
+      clearCart()
+    }
+  }, [router])
 
   return (
     <div className="flex h-full min-h-screen w-screen flex-col items-center justify-center pt-20">

@@ -2,6 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import url("../components/core/SparkleAnim/sparkleanim.scss");
+
 @font-face {
 	font-family: "Dunkin";
 	src: url("/fonts/PS_Dunkin/Dunkin.otf") format("opentype");
@@ -23,4 +25,8 @@
 
 .smooth-transition {
   @apply transition duration-200 ease-in-out;
+}
+
+.smooth-transition-all {
+  @apply transition-all duration-200 ease-out;
 }

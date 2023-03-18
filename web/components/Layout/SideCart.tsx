@@ -1,16 +1,26 @@
-import { FC, Dispatch, SetStateAction, useEffect } from "react"
-import clsx from "clsx"
-import { SideCartItem } from "./SideCartItem"
-import { useShoppingCart } from "use-shopping-cart"
-import Image from "next/image"
 import { Button } from "@components/core"
+import clsx from "clsx"
+import Image from "next/image"
+import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from "react"
+import { useShoppingCart } from "use-shopping-cart"
+import { SideCartItem } from "./SideCartItem"
 
 export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<boolean>> }> = ({ view, setView }) => {
   const { cartDetails, clearCart, cartCount } = useShoppingCart()
+  const [animation, setAnimation] = useState(false)
+  const cartCounter = useRef(cartCount)
+  const cartCountChanged = cartCount !== cartCounter.current
 
   useEffect(() => {
-    if (cartCount) console.log("cart updated")
-  }, [cartCount])
+    console.log("animation", animation)
+    if (!animation && cartCountChanged) {
+      cartCounter.current = cartCount
+      setTimeout(() => {
+        setAnimation(false)
+      }, 1000)
+      setAnimation(true)
+    }
+  }, [cartCount, cartCountChanged, animation])
 
   const cartItems = Object.entries(cartDetails ?? {})
   return (
@@ -84,7 +94,17 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
           "smooth-transition fixed top-0 right-0 m-2 mt-24 w-24 rounded-md bg-p5 p-2 px-5",
           !view ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         )}
-      >{`open <`}</Button>
+      >
+        {`open <`}
+        <div
+          className={clsx(
+            "smooth-transition absolute left-0 -translate-x-full pr-3",
+            animation ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <span className="h-8 w-8 shrink-0 rounded-full bg-green-500 p-1">{cartCount}</span>
+        </div>
+      </Button>
     </>
   )
 }

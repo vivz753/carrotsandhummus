@@ -11,25 +11,16 @@ export const ShoppingCartSummary = () => {
   const checkout = async () => {
     setLoading(true)
     try {
-      const checkoutSession = await axios.post(`/api/stripe/checkout`, cartDetails, {
-        headers: {
-          // "Access-Control-Allow-Origin": "http://localhost:3000", // TODO: do I need to add the carrotsandhummus.art domain?
-        },
-      })
-      console.log("checkoutSession.data", checkoutSession.data)
-      checkoutSession.data.status
+      const checkoutSession = await axios.post(`/api/stripe/checkout`, cartDetails)
       await redirectToCheckout(checkoutSession.data.id)
     } catch (error) {
       let errorMsg = error
       if (axios.isAxiosError(error)) {
         errorMsg = error.response?.data.message
       }
-      alert(errorMsg)
     }
     setLoading(false)
   }
-
-  console.log("cartDetails", cartDetails)
 
   return (
     <div className="my-10 flex w-full flex-col justify-center gap-10 rounded-xl px-5 py-10 ring-4 ring-p5 lg:w-min lg:p-20">

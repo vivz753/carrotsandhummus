@@ -17,6 +17,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] add shopping cart functionality
 - [ ] add full page view w/ description
 - [ ] add filters by artist, category, price, etc.
+- [x] add animation for Added item click
+- [x] add animation for clicking checkout button
 - [ ] add SEO
+- [ ] add coupons/discount codes
+- [ ] update about page
 - [x] working checkout function
+- [x] email invoices after checkout
+- [x] add shipping and tax
 - [x] NPC Dialogues for success/cancelled transactions
