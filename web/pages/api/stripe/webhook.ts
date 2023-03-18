@@ -1,14 +1,14 @@
-import type { Stripe } from "stripe"
-import { NextApiRequest, NextApiResponse } from "next"
-import { buffer } from "micro"
 import getStripe from "lib/stripe/getStripe"
+import { buffer } from "micro"
+import { NextApiRequest, NextApiResponse } from "next"
 import { sendStripeEmail } from "pages/api"
+import type { Stripe } from "stripe"
 
 const STRIPE_SIGNATURE_HEADER = "stripe-signature"
 const webhookSecretKey = process.env.STRIPE_WEBHOOKS_SECRET || ""
 
 export enum StripeWebhooks {
-  AsyncPaymentSuccess = "checkout.session.async_payment_succeeded",
+  PaymentSuccess = "checkout.session.async_payment_succeeded",
   Completed = "checkout.session.completed",
   PaymentFailed = "checkout.session.async_payment_failed",
 }
@@ -38,7 +38,7 @@ export default async function checkoutsWebhooksHandler(req: NextApiRequest, res:
     const { type } = event
     console.log("type", type)
     switch (type) {
-      case StripeWebhooks.AsyncPaymentSuccess: {
+      case StripeWebhooks.PaymentSuccess: {
         console.log("ASYNC PAYMENT SUCCESS")
         sendStripeEmail(type, event.data.object as Stripe.Checkout.Session)
 
@@ -48,7 +48,7 @@ export default async function checkoutsWebhooksHandler(req: NextApiRequest, res:
       case StripeWebhooks.Completed: {
         console.log("CHECKOUT COMPLETED")
         sendStripeEmail(type, event.data.object as Stripe.Checkout.Session)
-        
+
         break
       }
 

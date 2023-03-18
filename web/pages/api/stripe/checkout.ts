@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 // import Stripe from "stripe"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
-import getStripe from "lib/stripe/getStripe"
+import getStripe from "@lib/stripe/getStripe"
 import Stripe from "stripe"
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -27,9 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         console.log(itemToAddTax)
         return {
           ...itemToAddTax,
-          tax_rates: [
-            salesTaxId
-          ],
+          tax_rates: [salesTaxId],
         }
       })
 
