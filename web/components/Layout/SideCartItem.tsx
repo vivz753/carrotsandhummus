@@ -1,8 +1,7 @@
-import { MissingImage } from "@components/core"
-import { MinusCircleIcon, PlusCircleIcon, TrashIcon } from "@components/icons"
+import { DeleteProductButton, EditProductQuantityButtons, MissingImage } from "@components/core"
 import Image from "next/image"
 import { FC } from "react"
-import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
+import { formatCurrencyString } from "use-shopping-cart"
 
 export const SideCartItem: FC<{
   name: string
@@ -10,17 +9,13 @@ export const SideCartItem: FC<{
   quantity: number
   image: string
   price: number
-  cartItemId: string
-}> = ({ name, category, quantity, image, price, cartItemId }) => {
-  const { decrementItem, incrementItem, removeItem } = useShoppingCart()
-
+  productId: string
+}> = ({ name, category, quantity, image, price, productId }) => {
   const userFriendlyPrice = formatCurrencyString({
     value: price,
     currency: "USD",
     language: "en-US",
   })
-
-  // const [cartQuantity, setCartQuantity] = useState(quantity.toString()) // max should be 3 digits
 
   return (
     <div className="h-32 w-full shrink-0 p-2">
@@ -40,45 +35,8 @@ export const SideCartItem: FC<{
           </span>
           <span>{userFriendlyPrice} ea.</span>
         </div>
-        <div className="flex flex-col gap-2">
-          <span className="relative w-12 text-center text-xl">
-            <input
-              value={quantity}
-              // onChange={(e) => setCartQuantity(e.target.value)}
-              className="w-full rounded-md border py-1 text-center"
-            />
-            <div className="absolute bottom-0 flex w-12 translate-y-full flex-row justify-center pt-1">
-              <button
-                onClick={() => {
-                  // setCartQuantity((val) => {
-                  //   const value = Number(val)
-                  //   if (value > 0) return (value - 1).toString()
-                  //   else return val
-                  // })
-                  decrementItem(cartItemId)
-                }}
-              >
-                <MinusCircleIcon className="h-5 w-5 shrink-0 fill-red-500" />
-              </button>
-              <button
-                onClick={() => {
-                  // setCartQuantity((val) => {
-                  //   const value = Number(val)
-                  //   if (value < 999) return (value + 1).toString()
-                  //   else return val
-                  // })
-                  incrementItem(cartItemId)
-                }}
-              >
-                <PlusCircleIcon className="h-5 w-5 shrink-0 fill-green-500" />
-              </button>
-            </div>
-          </span>
-        </div>
-        {/* TODO: Delete Item Button */}
-        <button onClick={() => removeItem(cartItemId)} className="h-6 w-6 shrink-0">
-          <TrashIcon className="h-full w-full stroke-p4" />
-        </button>
+        <EditProductQuantityButtons quantity={quantity} productId={productId} />
+        <DeleteProductButton productId={productId} />
       </div>
     </div>
   )

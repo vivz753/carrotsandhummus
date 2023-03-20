@@ -47,7 +47,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
                 {cartItems.map(([id, data]) => (
                   <SideCartItem
                     key={id}
-                    cartItemId={id}
+                    productId={id}
                     name={data.name}
                     category={data.category}
                     quantity={data.quantity}
@@ -68,22 +68,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
               </div>
             </>
           ) : (
-            <div className="flex h-full flex-col items-center justify-center gap-5">
-              <span>{`"hey,"`}</span>
-              <div className="relative h-48 w-48">
-                <Image
-                  src="/images/angry/magnifiedcat.JPG"
-                  fill
-                  style={{ objectFit: "contain" }}
-                  alt="angry-shopkeeper"
-                />
-              </div>
-              <span>Uh oh, the shopkeeper looks angry... </span>
-              <span>{`"go buy something, or... or... get out here!!"`}</span>
-              <Button href="/shoppe" className="mt-24">
-                Okay...
-              </Button>
-            </div>
+            <EmptyCartContents />
           )}
         </div>
       </div>
@@ -108,3 +93,17 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
     </>
   )
 }
+
+const EmptyCartContents: FC = () => (
+  <div className="flex h-full flex-col items-center justify-center gap-5">
+    <span>{`"hey,"`}</span>
+    <div className="relative h-48 w-48">
+      <Image src="/images/angry/magnifiedcat.JPG" fill style={{ objectFit: "contain" }} alt="angry-shopkeeper" />
+    </div>
+    <span>Uh oh, the shopkeeper looks angry... </span>
+    <span>{`"go buy something, or... or... get out here!!"`}</span>
+    <Button href="/shoppe" className="mt-24">
+      Okay...
+    </Button>
+  </div>
+)

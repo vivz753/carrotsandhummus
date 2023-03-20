@@ -3,6 +3,7 @@
 @import "tailwindcss/utilities";
 
 @import url("../components/core/SparkleAnim/sparkleanim.scss");
+@import url("../components/core/LoadingOverlay/blinkingdots.scss");
 
 @font-face {
 	font-family: "Dunkin";
