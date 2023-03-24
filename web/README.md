@@ -15,14 +15,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## TODO
 
 - [x] add shopping cart functionality
-- [ ] add full page view w/ description
+- [x] add full page view w/ description
+- [ ] add search bar
 - [ ] add filters by artist, category, price, etc.
+- [x] add product quantity edit buttons + delete button
 - [x] add animation for Added item click
 - [x] add animation for clicking checkout button
 - [ ] add SEO
 - [ ] add coupons/discount codes
-- [ ] update about page
+- [x] update about page
 - [x] working checkout function
 - [x] email invoices after checkout
 - [x] add shipping and tax
 - [x] NPC Dialogues for success/cancelled transactions
+- [ ] remove copyrighted artworks
+- [ ] add tags

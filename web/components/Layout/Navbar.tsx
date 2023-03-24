@@ -1,6 +1,6 @@
-import { FC, Dispatch, SetStateAction } from "react"
-import Link from "next/link"
 import { CartIcon } from "@components/icons"
+import Link from "next/link"
+import { Dispatch, FC, SetStateAction } from "react"
 
 const navLabels = ["Home", "About"]
 const navLinks = ["/", "/about"]
@@ -13,6 +13,10 @@ export const Navbar: FC<{ setSideCart: Dispatch<SetStateAction<boolean>> }> = ({
           {label}
         </Link>
       ))}
+      <input
+        className="h-10 rounded-full border text-white focus:outline-none focus:border-2 border-white bg-transparent p-3 placeholder:text-white"
+        placeholder="Search for an Item..."
+      />
       <button className="ml-auto">
         <Link href="/shoppe/preview">
           <CartIcon className="h-8 w-8 stroke-white" />

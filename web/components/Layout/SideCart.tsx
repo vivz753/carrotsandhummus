@@ -1,4 +1,5 @@
 import { Button } from "@components/core"
+import { CartIcon } from "@components/icons"
 import clsx from "clsx"
 import Image from "next/image"
 import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from "react"
@@ -76,11 +77,14 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
         variant="solid1"
         onClick={() => setView(true)}
         className={clsx(
-          "smooth-transition fixed top-0 right-0 m-2 mt-24 w-24 rounded-md bg-p5 p-2 px-5",
+          "smooth-transition fixed top-0 right-0 m-2 mt-24",
           !view ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         )}
       >
-        {`open <`}
+        <div className="flex flex-row items-center gap-2">
+          <span>{`< open`}</span>
+          <CartIcon className="h-6 w-6 stroke-white" />
+        </div>
         <div
           className={clsx(
             "smooth-transition absolute left-0 -translate-x-full pr-3",

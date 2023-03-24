@@ -32,7 +32,8 @@ const profiles: Profile[] = [
   },
   {
     name: "Ray",
-    bio: "idk",
+    bio: "",
+    quote: `"Ever since I moved to my own place, one of my favorite things has been receiving coupons and letters in the mail. I recommend sending my things in the mail to people you care about. Wish you have a nice day :)"`,
     img: {
       src: "/images/ray.jpg",
       style: { objectFit: "cover" },

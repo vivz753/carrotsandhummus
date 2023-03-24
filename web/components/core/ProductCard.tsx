@@ -2,6 +2,7 @@ import { MissingImage, SparkleAnim } from "@components/core"
 import { Product } from "@types"
 import { currencyToString } from "lib/utils"
 import Image from "next/image"
+import Link from "next/link"
 import { FC, useState } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
@@ -26,15 +27,16 @@ export const ProductCard: FC<{ product: Product }> = ({ product }) => {
 
   return (
     <div className="group relative flex w-96 flex-col items-center gap-2 rounded-xl py-5 px-5 ring-1 ring-p5">
-      <span className="text-xl">{name}</span>
-
-      <div className="smooth-transition relative h-72 w-72 transform rounded-lg group-hover:scale-105">
-        {image ? (
-          <Image fill className="rounded-lg" style={{ objectFit: "contain" }} alt={name} src={image}></Image>
-        ) : (
-          <MissingImage />
-        )}
-      </div>
+      <Link className="flex flex-col gap-2" href={`/shoppe/product/${product.id}`}>
+        <span className="text-xl">{name}</span>
+        <div className="smooth-transition relative h-72 w-72 transform rounded-lg group-hover:scale-105">
+          {image ? (
+            <Image fill className="rounded-lg" style={{ objectFit: "contain" }} alt={name} src={image}></Image>
+          ) : (
+            <MissingImage />
+          )}
+        </div>
+      </Link>
       <span className="mb-5">{description}</span>
       <button
         onClick={() => addToCart(product)}
