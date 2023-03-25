@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - [x] add shopping cart functionality
 - [x] add full page view w/ description
-- [ ] add search bar
+- [x] add search bar
 - [ ] add filters by artist, category, price, etc.
 - [x] add product quantity edit buttons + delete button
 - [x] add animation for Added item click
