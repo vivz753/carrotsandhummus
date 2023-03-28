@@ -1,5 +1,5 @@
 import { Button } from "@components/core"
-import { CartIcon } from "@components/icons"
+import { CartIcon, LeftCaretIcon, RightCaretIcon } from "@components/icons"
 import clsx from "clsx"
 import Image from "next/image"
 import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from "react"
@@ -36,7 +36,10 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
           <span className="absolute text-center text-white">Ye Olde Cart</span>
           {view && (
             <>
-              <Button onClick={() => setView(false)} variant="solid2" className="m-2 mr-auto">{`close >`}</Button>
+              <Button onClick={() => setView(false)} variant="solid2" className="m-2 mr-auto">
+                Close
+                <RightCaretIcon className="h-6 w-6 fill-black" />
+              </Button>
             </>
           )}
         </div>
@@ -82,7 +85,8 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
         )}
       >
         <div className="flex flex-row items-center gap-2">
-          <span>{`< open`}</span>
+          <LeftCaretIcon className="h-6 w-6 fill-white" />
+          <span>open</span>
           <CartIcon className="h-6 w-6 stroke-white" />
         </div>
         <div

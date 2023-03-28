@@ -1,4 +1,4 @@
-import { ProductCard, Searchbar } from "@components/core"
+import { Dropdown, ProductCard, Searchbar } from "@components/core"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import { Product } from "@types"
@@ -6,18 +6,37 @@ import { GetStaticProps, NextPage } from "next"
 import Image from "next/image"
 import { useState } from "react"
 
+const filterByName = (products: Product[], input: string) => {
+  if (!input) return products
+
+  return products.filter(
+    (product) =>
+      product.name
+        .toLowerCase()
+        .split(" ")
+        .findIndex((token) => token.startsWith(input.toLowerCase())) !== -1
+  )
+}
+
+const filterByArtist = (products: Product[], input: string) => {
+  if (input === "all") return products
+
+  return products.filter((product) => product.artist.toLowerCase() === input.toLowerCase())
+}
+
+const filterByCategory = (products: Product[], input: string) => {
+  if (input === "all") return products
+  return products.filter((product) => product.category?.toLowerCase() === input.toLowerCase())
+}
+
 const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
+  const categories = ["sticker", "print", "card", "all"]
+  const [category, setCategory] = useState("all")
+  const artists = ["Ray", "@carrotjuicelol", "@natd0ge", "all"]
+  const [artist, setArtist] = useState("all")
   const [searchValue, setSearchValue] = useState("")
-  console.log("products", products)
-  const filteredProducts = searchValue
-    ? products.filter(
-        (product) =>
-          product.name
-            .toLowerCase()
-            .split(" ")
-            .findIndex((token) => token.startsWith(searchValue.toLowerCase())) !== -1
-      )
-    : products
+
+  const filteredProducts = filterByCategory(filterByArtist(filterByName(products, searchValue), artist), category)
 
   return (
     <main>
@@ -30,10 +49,30 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
             <Image src="/images/angry/doomsdaycat.JPG" alt="doomsdaycat" fill style={{ objectFit: "contain" }} />
           </div>
           <span>{`"HMPH...."`}</span>
-          <div className="flex w-[80%] flex-row justify-center rounded-xl bg-p5 py-5 ">
-            <Searchbar value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-            {/* TODO: artist filter */}
-            {/* TODO: category filter */}
+          {/* Search/Filter tools */}
+          <div className="flex w-[80%] flex-row justify-center gap-10 rounded-full bg-p5 py-3 px-14 text-white">
+            <div className="flex w-full flex-col items-start gap-1">
+              <span>Item Name</span>
+              <Searchbar className="flex w-full" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
+            </div>
+            <div className="flex flex-col items-start gap-1">
+              <span>Artist</span>
+              <Dropdown
+                className="w-28"
+                setOption={(artist) => setArtist(artist)}
+                options={artists}
+                currentOption={artist}
+              />
+            </div>
+            <div className="flex flex-col items-start gap-1">
+              <span>Category</span>
+              <Dropdown
+                className="w-28"
+                setOption={(category) => setCategory(category)}
+                options={categories}
+                currentOption={category}
+              />
+            </div>
             {/* TODO: price ascending/descending */}
           </div>
           <div className="flex w-full flex-wrap justify-center gap-10 p-20">

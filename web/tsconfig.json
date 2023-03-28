@@ -18,6 +18,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@lib/*": ["lib/*"],
+      "@hooks/*": ["lib/hooks/*"],
       "@types/*": ["types/*"],
       "@types": ["types"]
     }
