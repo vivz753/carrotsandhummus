@@ -4,9 +4,10 @@ export type Product = {
   price: number
   stock?: number
   description?: string
-  size?: string
+  sizes?: string[]
   category?: string
-  image?: string
+  image?: string // TODO: remove
+  images?: string[]
   id: string
   currency: "USD"
 }

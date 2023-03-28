@@ -21,6 +21,19 @@ export default {
       type: "number",
     },
     {
+      name: "sizes",
+      title: "Size(s)",
+      description: `i.e. 3" x 3" or A6`,
+      type: "array",
+      of: [{ type: "string" }],
+    },
+    {
+      name: "category",
+      title: "Category",
+      description: "i.e. sticker, print, card",
+      type: "string",
+    },
+    {
       name: "stock",
       title: "Stock",
       description: "amount available for sale",
@@ -30,18 +43,6 @@ export default {
       name: "description",
       title: "Description",
       type: "text",
-    },
-    {
-      name: "size",
-      title: "Size",
-      description: `i.e. 3x3"`,
-      type: "string",
-    },
-    {
-      name: "category",
-      title: "Category",
-      description: "i.e. sticker, print, card",
-      type: "string",
     },
     {
       name: "currency",
@@ -56,6 +57,15 @@ export default {
       options: {
         hotspot: true,
       },
+    },
+    {
+      name: "images",
+      title: "Image(s)",
+      type: "array",
+      options: {
+        hotspot: true,
+      },
+      of: [{ type: "image" }],
     },
   ],
   initialValue: {
