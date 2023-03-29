@@ -2,7 +2,7 @@ import { HeartIcon } from "@components/icons"
 import { FC } from "react"
 
 export const LoadingOverlay: FC = () => (
-  <div className="pointer-events-none fixed inset-0 z-10 flex h-screen w-screen cursor-wait items-center justify-center">
+  <div className="pointer-events-none fixed inset-0 z-20 flex h-screen w-screen cursor-wait items-center justify-center">
     <div className="absolute inset-0 bg-white opacity-20" />
     <div className="flex flex-row items-center justify-center gap-2 rounded-xl bg-red-300 px-5 py-3">
       <HeartIcon className="h-8 w-8 animate-pulse fill-white" />

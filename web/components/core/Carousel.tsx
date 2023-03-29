@@ -34,11 +34,13 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
   return (
     <div className={clsx("relative flex flex-col", size === "md" ? "w-72" : "w-72 lg:w-96")}>
       <div className="relative flex flex-row items-center">
-        <div className="absolute left-0 -translate-x-full p-3">
-          <button onClick={shiftLeft} className="rounded-full bg-gray-400 p-1">
-            <LeftCaretIcon className="h-4 w-4 fill-white" />
-          </button>
-        </div>
+        {images.length > 0 && (
+          <div className="absolute left-0 -translate-x-full p-3">
+            <button onClick={shiftLeft} className="rounded-full bg-gray-400 p-1">
+              <LeftCaretIcon className="h-4 w-4 fill-white" />
+            </button>
+          </div>
+        )}
         <div className="overflow-hidden whitespace-nowrap">
           <div
             className="smooth-transition-all inline-block transform whitespace-nowrap"
@@ -64,11 +66,13 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
             </ConditionalWrapper>
           </div>
         </div>
-        <div className="absolute right-0 translate-x-full p-3">
-          <button onClick={shiftRight} className="rounded-full bg-gray-400 p-1">
-            <RightCaretIcon className="h-4 w-4 fill-white" />
-          </button>
-        </div>
+        {images.length > 0 && (
+          <div className="absolute right-0 translate-x-full p-3">
+            <button onClick={shiftRight} className="rounded-full bg-gray-400 p-1">
+              <RightCaretIcon className="h-4 w-4 fill-white" />
+            </button>
+          </div>
+        )}
       </div>
       <div className="flex -translate-y-full flex-row justify-center gap-1">
         {Array(images.length)
