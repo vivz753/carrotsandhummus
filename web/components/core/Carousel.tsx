@@ -34,14 +34,19 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
   return (
     <div className={clsx("relative flex flex-col", size === "md" ? "w-72" : "w-72 lg:w-96")}>
       <div className="relative flex flex-row items-center">
-        {images.length > 0 && (
+        {images.length > 1 && (
           <div className="absolute left-0 -translate-x-full p-3">
             <button onClick={shiftLeft} className="rounded-full bg-gray-400 p-1">
               <LeftCaretIcon className="h-4 w-4 fill-white" />
             </button>
           </div>
         )}
-        <div className="overflow-hidden whitespace-nowrap">
+        <div
+          className={clsx(
+            href && "smooth-transition-all transform hover:scale-105",
+            "overflow-hidden whitespace-nowrap"
+          )}
+        >
           <div
             className="smooth-transition-all inline-block transform whitespace-nowrap"
             style={{
@@ -53,11 +58,7 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
                 {images.map((url) => (
                   <div
                     key={url}
-                    className={clsx(
-                      "relative inline-block",
-                      href && "smooth-transition-all transform hover:scale-105",
-                      size === "md" ? "h-72 w-72" : "h-72 w-72 lg:h-96 lg:w-96"
-                    )}
+                    className={clsx("relative inline-block", size === "md" ? "h-72 w-72" : "h-72 w-72 lg:h-96 lg:w-96")}
                   >
                     <Image fill style={{ objectFit: "contain" }} src={url} alt={url} />
                   </div>
@@ -66,7 +67,7 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
             </ConditionalWrapper>
           </div>
         </div>
-        {images.length > 0 && (
+        {images.length > 1 && (
           <div className="absolute right-0 translate-x-full p-3">
             <button onClick={shiftRight} className="rounded-full bg-gray-400 p-1">
               <RightCaretIcon className="h-4 w-4 fill-white" />
@@ -74,16 +75,21 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
           </div>
         )}
       </div>
-      <div className="flex -translate-y-full flex-row justify-center gap-1">
-        {Array(images.length)
-          .fill(0)
-          .map((x, i) => (
-            <span
-              key={i}
-              className={clsx("h-2 w-2 rounded-full border border-gray-400", i === index ? "bg-gray-400" : "bg-white")}
-            />
-          ))}
-      </div>
+      {images.length > 1 && (
+        <div className="flex -translate-y-full flex-row justify-center gap-1">
+          {Array(images.length)
+            .fill(0)
+            .map((x, i) => (
+              <span
+                key={i}
+                className={clsx(
+                  "h-2 w-2 rounded-full border border-gray-400",
+                  i === index ? "bg-gray-400" : "bg-white"
+                )}
+              />
+            ))}
+        </div>
+      )}
     </div>
   )
 }

@@ -39,7 +39,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
         <LoadingOverlay />
       ) : (
         <div className="flex h-full w-screen flex-col items-center justify-center px-8 pt-20">
-          <div className="my-20 flex w-full max-w-[695px] flex-col gap-10 rounded-xl border border-p5 p-8 lg:w-3/4 lg:p-20 xl:w-1/2">
+          <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border border-p5 p-8 lg:p-20">
             <div className="flex w-full flex-col gap-5">
               <div className="flex  flex-col items-start gap-2">
                 <span className="text-3xl">{name}</span>
@@ -57,7 +57,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                 {images && images.length > 0 ? (
                   <Carousel size="lg" images={images ?? []} />
                 ) : (
-                  <div className="smooth-transition relative h-72 w-72 transform rounded-lg lg:h-96 lg:w-96">
+                  <div className="relative h-96 w-96 transform rounded-lg lg:h-[550px] lg:w-[550px]">
                     {image ? (
                       <Image
                         fill
@@ -69,6 +69,8 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                     ) : (
                       <MissingImage />
                     )}
+                    {/* Prevents Right-clicking */}
+                    <div className="absolute inset-0 h-full w-full" />
                   </div>
                 )}
               </div>

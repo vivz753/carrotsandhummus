@@ -54,8 +54,8 @@ export const ShoppingCartSummary = () => {
             Object.values(cartDetails).map((item) => (
               <div key={item.id} className="grid max-w-full grid-flow-col items-center lg:auto-cols-auto  ">
                 {/* COL 1 */}
-                <div className="relative flex h-20 w-20 shrink-0 grow-0 rounded-xl lg:h-48 lg:w-48">
-                  <Link href={`/shoppe/product/${item.id}`}>
+                <Link href={`/shoppe/product/${item.id}`}>
+                  <div className="relative flex h-20 w-20 shrink-0 grow-0 rounded-xl lg:h-48 lg:w-48">
                     {item.image || (item.images && item.images.length > 0) ? (
                       <Image
                         style={{ objectFit: "contain" }}
@@ -69,8 +69,9 @@ export const ShoppingCartSummary = () => {
                         <MissingImage />
                       </span>
                     )}
-                  </Link>
-                </div>
+                    <div className="absolute inset-0 h-full w-full" />
+                  </div>
+                </Link>
                 {/* COL 2 */}
                 <div className="flex w-32 flex-col items-center gap-1 lg:w-72 lg:p-8">
                   <Link href={`/shoppe/product/${item.id}`}>

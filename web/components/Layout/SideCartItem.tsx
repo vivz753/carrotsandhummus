@@ -15,7 +15,7 @@ export const SideCartItem: FC<{
     <div className="h-32 w-full shrink-0 p-2">
       <div className="flex h-full w-full flex-row items-center gap-5 rounded-2xl bg-white px-4 shadow-md">
         <Link className="flex flex-row items-center gap-5" href={`/shoppe/product/${productId}`}>
-          <div className="relative flex h-16 w-16 shrink-0 grow-0 rounded-xl border-2">
+          <div className="relative flex h-16 w-16 shrink-0 grow-0 rounded-xl">
             {image ? (
               <Image style={{ objectFit: "contain" }} src={image} fill className="rounded-xl" alt={name}></Image>
             ) : (
@@ -23,6 +23,7 @@ export const SideCartItem: FC<{
                 <MissingImage />
               </span>
             )}
+            <div className="absolute inset-0 h-full w-full" />
           </div>
           <div className="flex w-full flex-col">
             <span>{name}</span>

@@ -17,7 +17,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] add shopping cart functionality
 - [x] add full page view w/ description
 - [x] add search bar
-- [ ] add filters by artist, category, price, etc.
+- [x] add filters by artist, category
+- [ ] add filters by price, etc.
 - [x] add product quantity edit buttons + delete button
 - [x] add animation for Added item click
 - [x] add animation for clicking checkout button
@@ -29,4 +30,13 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] add shipping and tax
 - [x] NPC Dialogues for success/cancelled transactions
 - [ ] remove copyrighted artworks
+- [ ] remove the image prop, in favor of images -- after nat reuploads images
+- [ ] add image magnification AND/OR click to view large/inspect
+- [ ] links to artists?? to have their own map/page
+- [ ] redirect page that tells that we've sent an email confirmation
+  - [ ] https://www.sanity.io/guides/building-ecommerce-sites-with-the-stripe-api
 - [ ] add tags
+  - [ ] for medium (oil, charcoal, digital, limited edition)
+- [ ] TEST:
+  - [ ] the invoice emails + carrotsandhummus invoice email
+  - [ ] 

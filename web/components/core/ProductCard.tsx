@@ -40,6 +40,7 @@ export const ProductCard: FC<{ product: Product }> = ({ product }) => {
               alt={name}
               src={image}
             ></Image>
+            <div className="absolute inset-0 h-full w-full" />
           </div>
         </Link>
       ) : images && images?.length > 0 ? (
