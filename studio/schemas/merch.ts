@@ -21,11 +21,10 @@ export default {
       type: "number",
     },
     {
-      name: "sizes",
-      title: "Size(s)",
+      name: "size",
+      title: "Size",
       description: `i.e. 3" x 3" or A6`,
-      type: "array",
-      of: [{ type: "string" }],
+      type: "string",
     },
     {
       name: "category",
@@ -49,14 +48,6 @@ export default {
       title: "Currency",
       description: "Keep this 'USD'",
       type: "string",
-    },
-    {
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
     },
     {
       name: "images",

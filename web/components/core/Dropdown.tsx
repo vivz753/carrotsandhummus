@@ -50,7 +50,7 @@ export const Dropdown: FC<React.PropsWithChildren<DropdownProps>> = ({
       className={clsx(
         "relative flex h-full min-w-fit items-center rounded-3xl px-3",
         border && "border border-white",
-        outline && "focus:outline focus:outline-1 focus:outline-white"
+        outline && "focus:outline focus:outline-2 focus:outline-white"
       )}
     >
       <div className={clsx(className, "flex flex-row items-center justify-center gap-2")}>
@@ -66,12 +66,12 @@ export const Dropdown: FC<React.PropsWithChildren<DropdownProps>> = ({
       {showOptions && (
         <div
           className={clsx(
-            "absolute bottom-0 left-0 z-[1] w-full min-w-min translate-y-full flex-col gap-5 rounded-b-md bg-p5"
+            "absolute bottom-0 left-0 z-[1] w-full min-w-min translate-y-full flex-col gap-5 rounded-b-md bg-p2"
           )}
         >
           {options.map((option, i) => (
             <button
-              className="w-full select-none p-2 text-white outline outline-1 outline-white last:rounded-b-md hover:bg-white hover:text-p5 hover:-outline-offset-1 hover:outline-p5"
+              className="w-full select-none p-2 text-white outline outline-1 outline-white last:rounded-b-md hover:bg-white hover:text-p2 hover:-outline-offset-1 hover:outline-p2"
               key={i}
               onClick={() => handleOptionSelection(option)}
             >

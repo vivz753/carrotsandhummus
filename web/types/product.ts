@@ -4,7 +4,7 @@ export type Product = {
   price: number
   stock?: number
   description?: string
-  sizes?: string[]
+  size?: string
   category?: string
   image?: string // TODO: remove
   images?: string[]

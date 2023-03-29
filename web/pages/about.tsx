@@ -14,17 +14,17 @@ type Profile = {
 
 const profiles: Profile[] = [
   {
-    name: "Natalie",
-    bio: "Natalie has been vandalizing her homework with doodles and hand-drawing cards for her family and friends for as long as she can remember. This event represents the first time she is putting her work out for public perception. She hopes people cherish the little shitposts that are her prints and stickers.",
+    name: "@natd0ge",
+    bio: "@natd0ge has been vandalizing her homework with doodles and hand-drawing cards for her family and friends for as long as she can remember. This event represents the first time she is putting her work out for public perception. She hopes people cherish the little shitposts that are her prints and stickers.",
     img: {
       src: "/images/natalie.jpg",
       style: { objectFit: "cover" },
     },
   },
   {
-    name: "Vivian",
+    name: "@carrotjuicelol",
     quote: `"When I get old and shrimpy, imma regret not pursuing art!"`,
-    bio: `Started as a weab who grew up with Disney Channel and Cartoon Network that lived off of Tumblr fan art, Vivian is now the local art snob that attends museums and simps at the sight of Sergeant's work. Favorite artists include: Dana Terrace, marik_draw, Airi Pan.`,
+    bio: `Started as a weab who grew up with Disney Channel and Cartoon Network that lived off of Tumblr fan art, @carrotjuicelol is now the local art snob that attends museums and simps at the sight of Sergeant's work. Favorite artists include: Dana Terrace, marik_draw, Airi Pan.`,
     img: {
       src: "/images/vivian.jpg",
       style: { objectFit: "scale-down" },

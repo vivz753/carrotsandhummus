@@ -2,6 +2,7 @@ import { Button, DeleteProductButton, EditProductQuantityButtons, LoadingOverlay
 import axios from "axios"
 import clsx from "clsx"
 import Image from "next/image"
+import Link from "next/link"
 import { useState } from "react"
 import { formatCurrencyString, useShoppingCart } from "use-shopping-cart"
 
@@ -34,51 +35,55 @@ export const ShoppingCartSummary = () => {
       >
         <span className="text-3xl">Shopping Cart</span>
         <div className="flex flex-col gap-5">
-          <div className="grid w-full auto-cols-fr grid-flow-col text-center lg:auto-cols-auto">
+          <div className="grid w-full grid-flow-col text-center lg:auto-cols-auto">
             {/* COL 1 - Pic */}
-            <span className="w-16 lg:w-48 "></span>
+            <span className="w-20 lg:w-48 "></span>
             {/* COL 2 */}
-            <span className="w-auto lg:w-72">item</span>
+            <span className="w-32 lg:w-72">item</span>
             {/* COL 3 */}
-            <span className="hidden w-auto lg:block lg:w-24">artist</span>
+            <span className="hidden w-auto lg:block lg:w-40">artist</span>
             {/* COL 4 */}
-            <span className="w-auto lg:w-24 ">unit price</span>
+            <span className="hidden w-auto lg:block lg:w-24 ">unit price</span>
             {/* COL 5 */}
             <span className="w-auto lg:w-32">quantity</span>
             {/* COL 6 - Delete Button */}
-            <span className="w-auto lg:w-8"></span>
+            <span className="w-4"></span>
           </div>
           {/* Cart Items */}
           {cartDetails &&
             Object.values(cartDetails).map((item) => (
-              <div
-                key={item.id}
-                className="grid max-w-full auto-cols-fr grid-flow-col items-center lg:auto-cols-auto  "
-              >
+              <div key={item.id} className="grid max-w-full grid-flow-col items-center lg:auto-cols-auto  ">
                 {/* COL 1 */}
-                <div className="relative flex h-16 w-16 shrink-0 grow-0 rounded-xl border lg:h-48 lg:w-48">
-                  {item.image ? (
-                    <Image
-                      style={{ objectFit: "contain" }}
-                      className="rounded-xl"
-                      src={item.image}
-                      fill
-                      alt={item.name}
-                    ></Image>
-                  ) : (
-                    <span className="h-full w-full rounded-xl bg-red-200">
-                      <MissingImage />
-                    </span>
-                  )}
+                <div className="relative flex h-20 w-20 shrink-0 grow-0 rounded-xl lg:h-48 lg:w-48">
+                  <Link href={`/shoppe/product/${item.id}`}>
+                    {item.image || (item.images && item.images.length > 0) ? (
+                      <Image
+                        style={{ objectFit: "contain" }}
+                        className="rounded-xl"
+                        src={item.image || item.images[0]}
+                        fill
+                        alt={item.name}
+                      ></Image>
+                    ) : (
+                      <span className="h-full w-full rounded-xl bg-red-200">
+                        <MissingImage />
+                      </span>
+                    )}
+                  </Link>
                 </div>
                 {/* COL 2 */}
-                <div className="text-center lg:w-72 lg:p-8">
-                  {item.name} ({item.category})
+                <div className="flex w-32 flex-col items-center gap-1 lg:w-72 lg:p-8">
+                  <Link href={`/shoppe/product/${item.id}`}>
+                    <span className="text-center text-lg lg:text-xl">{item.name}</span>
+                  </Link>
+                  <span className="text-md text-center uppercase">
+                    {item.size} {item.category}
+                  </span>
                 </div>
                 {/* COL 3 */}
-                <div className="hidden p-2 text-center lg:block lg:w-24">{item.artist}</div>
+                <div className="hidden p-2 text-center text-lg lg:block lg:w-40">{item.artist}</div>
                 {/* COL 4 */}
-                <div className="p-2 text-center lg:w-24">
+                <div className="hidden p-2 text-center text-xl lg:block lg:w-24 lg:text-2xl">
                   {formatCurrencyString({
                     value: item.price,
                     currency: "USD",
@@ -90,7 +95,7 @@ export const ShoppingCartSummary = () => {
                   <EditProductQuantityButtons quantity={item.quantity} productId={item.id} />
                 </div>
                 {/* COL 6 */}
-                <div className="justify-centerlg:w-8 flex items-center p-2">
+                <div className="flex w-4 items-center justify-center p-2">
                   <DeleteProductButton productId={item.id} />
                 </div>
               </div>

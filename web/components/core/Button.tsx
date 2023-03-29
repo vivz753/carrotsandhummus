@@ -1,6 +1,7 @@
-import { FC, ReactNode, MouseEventHandler, ReactElement } from "react"
+import { ConditionalWrapper } from "@components/core"
 import clsx from "clsx"
 import Link from "next/link"
+import { FC, MouseEventHandler, ReactNode } from "react"
 
 export const Button: FC<{
   children: ReactNode
@@ -13,7 +14,7 @@ export const Button: FC<{
   disabled?: boolean
 }> = ({ wide, children, href, size = "xs", className, variant = "solid1", onClick, disabled }) => {
   const sizeStyle =
-    size === "xs" ? "p-2 px-5" : size === "sm" ? "h-[49px] text-[20px] px-7" : "h-[66px] text-[24px] px-[36px]"
+    size === "xs" ? "p-2 lg:px-5" : size === "sm" ? "h-[49px] text-[20px] px-7" : "h-[66px] text-[24px] px-[36px]"
   const baseStyle = "whitespace-nowrap rounded-md smooth-transition"
   const disabledStyle =
     "relative cursor-not-allowed after:bg-white after:w-full after:absolute after:h-full after:opacity-50 after:rounded-md"
@@ -41,9 +42,3 @@ export const Button: FC<{
     </ConditionalWrapper>
   )
 }
-
-const ConditionalWrapper: FC<{
-  condition: boolean
-  wrapper: (children: ReactNode) => ReactElement<any, any> | null
-  children: ReactElement<any, any> | null
-}> = ({ condition, wrapper, children }) => (condition ? wrapper(children) : children)

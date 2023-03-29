@@ -2,6 +2,7 @@ import { Dropdown, ProductCard, Searchbar } from "@components/core"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import { Product } from "@types"
+import clsx from "clsx"
 import { GetStaticProps, NextPage } from "next"
 import Image from "next/image"
 import { useState } from "react"
@@ -50,30 +51,51 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
           </div>
           <span>{`"HMPH...."`}</span>
           {/* Search/Filter tools */}
-          <div className="flex w-[80%] flex-row justify-center gap-10 rounded-full bg-p5 py-3 px-14 text-white">
-            <div className="flex w-full flex-col items-start gap-1">
-              <span>Item Name</span>
-              <Searchbar className="flex w-full" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-            </div>
-            <div className="flex flex-col items-start gap-1">
-              <span>Artist</span>
-              <Dropdown
-                className="w-28"
-                setOption={(artist) => setArtist(artist)}
-                options={artists}
-                currentOption={artist}
+          <div className="group relative flex w-full justify-center border lg:w-3/4">
+            {/* Pop-up GIF */}
+            <div
+              className={clsx(
+                "absolute left-20 top-0 z-0 h-20 w-20 translate-y-0 transform opacity-0 transition-all group-focus-within:z-[2] group-focus-within:-translate-y-[70%] group-focus-within:opacity-100 group-hover:z-[2] group-hover:-translate-y-[70%] group-hover:opacity-100"
+              )}
+            >
+              <Image
+                alt="typing cat"
+                src="https://media4.giphy.com/media/UQ1EI1ML2ABQdbebup/200w.webp?cid=ecf05e474pw209zhbrob0zej2huygxqrkatwltps7d75n1bu&rid=200w.webp&ct=s"
+                fill
+                style={{ objectFit: "contain" }}
               />
             </div>
-            <div className="flex flex-col items-start gap-1">
-              <span>Category</span>
-              <Dropdown
-                className="w-28"
-                setOption={(category) => setCategory(category)}
-                options={categories}
-                currentOption={category}
-              />
+            <div className="z-[1] flex w-full flex-col items-center justify-center gap-2 rounded-md bg-p2 p-4 py-5 text-white lg:flex-row lg:gap-10 lg:px-14">
+              <div className="flex w-full flex-col items-start gap-1">
+                <span>Item Name</span>
+                <Searchbar
+                  className="flex w-full"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+              </div>
+              <div className="flex w-full flex-row justify-between gap-5 lg:w-auto">
+                <div className="flex flex-col items-start gap-1">
+                  <span>Artist</span>
+                  <Dropdown
+                    className="h-10 w-36"
+                    setOption={(artist) => setArtist(artist)}
+                    options={artists}
+                    currentOption={artist}
+                  />
+                </div>
+                <div className="flex flex-col items-start gap-1">
+                  <span>Category</span>
+                  <Dropdown
+                    className="w-28"
+                    setOption={(category) => setCategory(category)}
+                    options={categories}
+                    currentOption={category}
+                  />
+                </div>
+              </div>
+              {/* TODO: price ascending/descending */}
             </div>
-            {/* TODO: price ascending/descending */}
           </div>
           <div className="flex w-full flex-wrap justify-center gap-10 p-20">
             {filteredProducts.map((product: Product) => (

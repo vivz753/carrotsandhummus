@@ -1,4 +1,4 @@
-import { Button, LoadingOverlay, MissingImage } from "@components/core"
+import { Button, Carousel, LoadingOverlay, MissingImage, SparkleAnim, Tag } from "@components/core"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import { Product } from "@types"
@@ -10,69 +10,97 @@ import { useState } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
 const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
+  const [clicked, setClicked] = useState(false)
   const router = useRouter()
   const { id } = router.query
 
   const product = products?.find((product) => id === product.id) ?? ({} as Product)
-  const { name, price, image, artist, description, category } = product
+  const { name, price, image, artist, description, category, size, images } = product
 
   const userFriendlyPrice = currencyToString(price, product.currency)
 
   const [productQuantity, setProductQuantity] = useState("1")
   const { addItem } = useShoppingCart()
 
+  const addToCart = () => {
+    addItem(product, { count: Number(productQuantity) })
+
+    if (!clicked) {
+      setClicked(true)
+      setTimeout(() => {
+        setClicked(false)
+      }, 3000)
+    }
+  }
+
   return (
     <main>
       {!products ? (
         <LoadingOverlay />
       ) : (
-        <div className="flex h-full w-screen flex-col items-center justify-center pt-20">
-          {/* <span>{id}</span> */}
-          <div className="my-20 flex flex-col gap-10 rounded-xl border border-p5 p-20 lg:w-1/2">
-            <div className="flex w-full flex-col items-start gap-2">
-              <span className="text-3xl">{name}</span>
-              {/* TODO make link for artist shop/filter w/ artist name */}
-              <span className="">by {artist}</span>
+        <div className="flex h-full w-screen flex-col items-center justify-center px-8 pt-20">
+          <div className="my-20 flex w-full max-w-[695px] flex-col gap-10 rounded-xl border border-p5 p-8 lg:w-3/4 lg:p-20 xl:w-1/2">
+            <div className="flex w-full flex-col gap-5">
+              <div className="flex  flex-col items-start gap-2">
+                <span className="text-3xl">{name}</span>
+                {/* TODO make link for artist shop/filter w/ artist name */}
+                <span className="">by {artist}</span>
+              </div>
+              <div className="flex flex-row gap-1">
+                <Tag className="bg-p4 text-white">{size}</Tag>
+                <Tag className="bg-p2 text-white">{category}</Tag>
+              </div>
             </div>
             <div className="flex flex-col items-center lg:flex-row lg:gap-20">
               {/* COL 1 */}
-              <div className="flex flex-col">
-                <div className="smooth-transition relative h-96 w-96 transform rounded-lg group-hover:scale-105">
-                  {image ? (
-                    <Image
-                      fill
-                      className="rounded-lg"
-                      style={{ objectFit: "contain" }}
-                      alt={name ?? "image_not_found"}
-                      src={image}
-                    ></Image>
-                  ) : (
-                    <MissingImage />
-                  )}
-                </div>
+              <div className="flex">
+                {images && images.length > 0 ? (
+                  <Carousel size="lg" images={images ?? []} />
+                ) : (
+                  <div className="smooth-transition relative h-72 w-72 transform rounded-lg lg:h-96 lg:w-96">
+                    {image ? (
+                      <Image
+                        fill
+                        className="rounded-lg"
+                        style={{ objectFit: "contain" }}
+                        alt={name ?? "image_not_found"}
+                        src={image}
+                      ></Image>
+                    ) : (
+                      <MissingImage />
+                    )}
+                  </div>
+                )}
               </div>
               {/* COL 2 */}
-              <div className="flex flex-col items-center gap-10 ">
-                <span className="uppercase">{category}</span>
+              <div className="my-10 flex w-full flex-col items-center justify-center gap-8 xl:gap-12">
                 <span className="text-3xl">{userFriendlyPrice}</span>
-                <div className="flex flex-col gap-2">
-                  <span className="text-xl">Quantity</span>
-                  <input
-                    className="w-20 rounded-md border py-1 text-center"
-                    value={productQuantity}
-                    pattern="^-?[1-9]\d*$"
-                    onChange={(e) => {
-                      e.preventDefault()
-                      if (e.target.validity.valid) {
-                        setProductQuantity(e.target.value)
-                      }
-                    }}
-                    type="tel"
-                  ></input>
+                <div className="flex flex-row items-end gap-5 lg:flex-col lg:items-center">
+                  <div className="flex flex-col gap-2">
+                    <span className="lg:text-xl">Quantity</span>
+                    <input
+                      className="w-20 rounded-md border py-1 text-center"
+                      value={productQuantity}
+                      pattern="^-?[1-9]\d*$"
+                      onChange={(e) => {
+                        e.preventDefault()
+                        if (e.target.validity.valid) {
+                          setProductQuantity(e.target.value)
+                        }
+                      }}
+                      type="tel"
+                    />
+                  </div>
+                  <Button variant="solid1" onClick={addToCart}>
+                    {clicked ? (
+                      <SparkleAnim amount={10} duration={5000}>
+                        <span className="px-5 py-2">Added!</span>
+                      </SparkleAnim>
+                    ) : (
+                      <span className="px-5 py-2">Add To Cart</span>
+                    )}
+                  </Button>
                 </div>
-                <Button variant="solid1" onClick={() => addItem(product, { count: Number(productQuantity) })}>
-                  Add To Cart
-                </Button>
               </div>
             </div>
             {description && (

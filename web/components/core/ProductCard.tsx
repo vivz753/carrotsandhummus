@@ -1,4 +1,4 @@
-import { MissingImage, SparkleAnim } from "@components/core"
+import { Carousel, MissingImage, SparkleAnim, Tag } from "@components/core"
 import { Product } from "@types"
 import { currencyToString } from "lib/utils"
 import Image from "next/image"
@@ -7,7 +7,7 @@ import { FC, useState } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
 export const ProductCard: FC<{ product: Product }> = ({ product }) => {
-  const { name, price, image, artist, description } = product
+  const { name, price, image, artist, description, size, category, images } = product
   const { addItem, cartDetails } = useShoppingCart()
   const [clicked, setClicked] = useState(false)
 
@@ -26,17 +26,33 @@ export const ProductCard: FC<{ product: Product }> = ({ product }) => {
   const userFriendlyPrice = currencyToString(price, product.currency)
 
   return (
-    <div className="group relative flex w-96 flex-col items-center gap-2 rounded-xl py-5 px-5 ring-1 ring-p5">
-      <Link className="flex flex-col gap-2" href={`/shoppe/product/${product.id}`}>
-        <span className="text-xl">{name}</span>
-        <div className="smooth-transition relative h-72 w-72 transform rounded-lg group-hover:scale-105">
-          {image ? (
-            <Image fill className="rounded-lg" style={{ objectFit: "contain" }} alt={name} src={image}></Image>
-          ) : (
-            <MissingImage />
-          )}
-        </div>
+    <div className="group relative flex w-96 flex-col items-center gap-3 rounded-xl py-5 px-5 ring-2 ring-p5">
+      <Link href={`/shoppe/product/${product.id}`}>
+        <span className="smooth-transition text-xl group-hover:scale-125">{name}</span>
       </Link>
+      {image ? (
+        <Link href={`/shoppe/product/${product.id}`}>
+          <div className="relative h-72 w-72 rounded-lg">
+            <Image
+              fill
+              className="smooth-transition transform rounded-lg group-hover:scale-105"
+              style={{ objectFit: "contain" }}
+              alt={name}
+              src={image}
+            ></Image>
+          </div>
+        </Link>
+      ) : images && images?.length > 0 ? (
+        <Carousel href={`/shoppe/product/${product.id}`} images={images ?? []} />
+      ) : (
+        <div className="relative h-72 w-72 rounded-lg">
+          <MissingImage />
+        </div>
+      )}
+      <div className="flex flex-row gap-1">
+        <Tag className="bg-p4 text-white">{size}</Tag>
+        <Tag className="bg-p2 text-white">{category}</Tag>
+      </div>
       <span className="mb-5">{description}</span>
       <button
         onClick={() => addToCart(product)}

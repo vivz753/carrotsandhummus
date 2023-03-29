@@ -18,7 +18,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
       cartCounter.current = cartCount
       setTimeout(() => {
         setAnimation(false)
-      }, 1000)
+      }, 8000)
       setAnimation(true)
     }
   }, [cartCount, cartCountChanged, animation])
@@ -37,7 +37,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
           {view && (
             <>
               <Button onClick={() => setView(false)} variant="solid2" className="m-2 mr-auto">
-                Close
+                close
                 <RightCaretIcon className="h-6 w-6 fill-black" />
               </Button>
             </>
@@ -55,14 +55,14 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
                     name={data.name}
                     category={data.category}
                     quantity={data.quantity}
-                    image={data.image ?? ""}
+                    image={data.image ?? data.images[0] ?? ""}
                     price={data.price}
                   />
                 ))}
               </div>
               <div className="flex flex-col">
                 {/* TODO: add a confirmation modal */}
-                <button className="ml-auto max-w-max rounded-md bg-red-500 p-1" onClick={clearCart}>
+                <button className="my-1 ml-auto max-w-max rounded-md bg-red-500 px-1 text-white" onClick={clearCart}>
                   Clear Cart
                 </button>
 
@@ -84,9 +84,9 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
           !view ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
         )}
       >
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-row items-center lg:gap-2">
           <LeftCaretIcon className="h-6 w-6 fill-white" />
-          <span>open</span>
+          <span className="hidden lg:flex">open</span>
           <CartIcon className="h-6 w-6 stroke-white" />
         </div>
         <div
@@ -95,7 +95,9 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
             animation ? "opacity-100" : "opacity-0"
           )}
         >
-          <span className="h-8 w-8 shrink-0 rounded-full bg-green-500 p-1">{cartCount}</span>
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-500 p-1">
+            {cartCount}
+          </span>
         </div>
       </Button>
     </>

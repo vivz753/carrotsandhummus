@@ -15,4 +15,10 @@ https://carrotsandhummus.sanity.studio/
 
 ## To Deploy
 
+Sanity studio changes:
 `npx sanity deploy`
+
+Any schema or API related changes:
+`npx sanity graphql deploy`
+
+IMPORTANT: Don't forget to update any query files on the front end or type files regarding the API result received
