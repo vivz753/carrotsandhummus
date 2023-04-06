@@ -11,7 +11,7 @@ export default {
     {
       name: "artist",
       title: "Artist",
-      description: "who it was created by",
+      description: "Who it was created by",
       type: "string",
     },
     {
@@ -29,19 +29,28 @@ export default {
     {
       name: "category",
       title: "Category",
-      description: "i.e. sticker, print, card",
+      description: "So far, it's just: sticker, print, card. Please let me know if you need a new category type.",
       type: "string",
-    },
-    {
-      name: "stock",
-      title: "Stock",
-      description: "amount available for sale",
-      type: "number",
     },
     {
       name: "description",
       title: "Description",
       type: "text",
+    },
+    {
+      name: "tags",
+      title: "Tags",
+      description:
+        "Any special attributes or mediums to display or search by i.e. charcoal, oil paint, limited edition, digital, nsfw, holiday, etc.",
+      type: "array",
+      of: [{ type: "string" }],
+    },
+    {
+      name: "hidden",
+      title: "Hidden",
+      type: "boolean",
+      description:
+        "Prevents this product from being published and publicly viewable on the website. Definitely do this if the product is out of stock indefinitely.",
     },
     {
       name: "currency",
@@ -52,6 +61,7 @@ export default {
     {
       name: "images",
       title: "Image(s)",
+      description: "Upload one or multiple images here",
       type: "array",
       options: {
         hotspot: true,

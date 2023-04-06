@@ -1,11 +1,11 @@
-import { NpcDialogue, ShoppingCartSummary } from "@components/core"
+import { ConfirmationSummary, NpcDialogue, ShoppingCartSummary } from "@components/core"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
 export default function PreviewPage() {
-  const { cartCount, clearCart } = useShoppingCart()
   const router = useRouter()
+  const { cartCount, clearCart } = useShoppingCart()
   const { transaction } = router.query
   const transactionSuccess = transaction === "success"
   const transactionFailed = transaction === "failed"
@@ -51,6 +51,7 @@ export default function PreviewPage() {
             ctaText="Go back to the items"
           />
         )}
+        {transactionSuccess && <ConfirmationSummary />}
         {(cartCount || 0) > 0 && <ShoppingCartSummary />}
       </div>
     </div>

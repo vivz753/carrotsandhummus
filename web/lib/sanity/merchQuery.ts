@@ -19,4 +19,6 @@ export const merchQuery = groq`
     "image": image.asset->url,
     "images": images[].asset->url,
     currency,
+    hidden,
+    tags
   }`;

@@ -1,6 +1,7 @@
 export * from "./Button"
 export * from "./Carousel"
 export * from "./ConditionalWrapper"
+export * from "./ConfirmationSummary"
 export * from "./Dropdown"
 export * from "./LoadingOverlay/LoadingOverlay"
 export * from "./MissingImage"

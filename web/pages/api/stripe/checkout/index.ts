@@ -2,7 +2,6 @@
 // Type: POST
 // Purpose: Used to perform checkout order with Stripe
 import { NextApiRequest, NextApiResponse } from "next"
-// import Stripe from "stripe"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import getStripe from "@lib/stripe/getStripe"
@@ -20,16 +19,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       // fetch the items from Sanity
       const products = await client.fetch(merchQuery)
-      console.log("products", products)
+      // console.log("products", products)
       console.log("req.body", req.body)
 
       const line_items = validateCartItems(products, req.body).map((itemToAddTax: any) => {
-        console.log(itemToAddTax)
+        console.log('itemToAddTax', itemToAddTax)
         return {
           ...itemToAddTax,
           tax_rates: [salesTaxId],
         }
       })
+
+      console.log('line_items', line_items)
 
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
@@ -54,7 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           },
         ],
         line_items,
-        success_url: `${req.headers.origin}/shoppe/preview?transaction=success`,
+        success_url: `${req.headers.origin}/shoppe/preview?transaction=success&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/shoppe/preview?transaction=failed`,
       }
       const checkoutSession: Stripe.Checkout.Session = await stripe?.checkout.sessions.create(params)
