@@ -30,13 +30,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] add shipping and tax
 - [x] NPC Dialogues for success/cancelled transactions
 - [ ] remove copyrighted artworks
-- [ ] remove the image prop, in favor of images -- after nat reuploads images
+- [ ] remove the image prop, in favor of images -- after nat re-uploads images
 - [ ] add image magnification AND/OR click to view large/inspect
 - [ ] links to artists?? to have their own map/page
-- [ ] redirect page that tells that we've sent an email confirmation
-  - [ ] https://www.sanity.io/guides/building-ecommerce-sites-with-the-stripe-api
+- [x] redirect page that tells that we've sent an email confirmation
+  - [x] https://www.sanity.io/guides/building-ecommerce-sites-with-the-stripe-api
 - [ ] add tags
   - [ ] for medium (oil, charcoal, digital, limited edition)
+- [ ] implement the hide property -- do not display products where hidden = true
 - [ ] TEST:
   - [ ] the invoice emails + carrotsandhummus invoice email
   - [ ] 
