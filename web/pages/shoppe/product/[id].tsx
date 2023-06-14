@@ -49,12 +49,12 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                 {/* TODO make link for artist shop/filter w/ artist name */}
                 <span className="">by {artist}</span>
               </div>
-              <div className="flex flex-wrap items-center gap-1">
+              <div className="flex w-max flex-col items-start gap-1 lg:flex-wrap">
                 <div className="flex flex-row gap-1">
                   <Tag className="bg-p4 text-white">{size}</Tag>
                   <Tag className="bg-p2 text-white">{category}</Tag>
                 </div>
-                <span className="h-full justify-center">.</span>
+                {tags && tags.length && <span className="hidden h-full justify-center lg:block">.</span>}
                 {tags && tags.length && (
                   <div className="flex flex-row gap-1">
                     {tags.map((tag) => (

@@ -52,52 +52,55 @@ export const ShoppingCartSummary = () => {
           {/* Cart Items */}
           {cartDetails &&
             Object.values(cartDetails).map((item) => (
-              <div key={item.id} className="grid max-w-full grid-flow-col items-center lg:auto-cols-auto  ">
-                {/* COL 1 */}
-                <Link href={`/shoppe/product/${item.id}`}>
-                  <div className="relative flex h-20 w-20 shrink-0 grow-0 rounded-xl lg:h-48 lg:w-48">
-                    {item.image || (item.images && item.images.length > 0) ? (
-                      <Image
-                        style={{ objectFit: "contain" }}
-                        className="rounded-xl"
-                        src={item.image || item.images[0]}
-                        fill
-                        alt={item.name}
-                      ></Image>
-                    ) : (
-                      <span className="h-full w-full rounded-xl bg-red-200">
-                        <MissingImage />
-                      </span>
-                    )}
-                    <div className="absolute inset-0 h-full w-full" />
-                  </div>
-                </Link>
-                {/* COL 2 */}
-                <div className="flex w-32 flex-col items-center gap-1 lg:w-72 lg:p-8">
+              <div className="flex flex-col gap-5">
+                <span className="h-[1px] w-full bg-p4" />
+                <div key={item.id} className="grid max-w-full grid-flow-col items-center lg:auto-cols-auto">
+                  {/* COL 1 */}
                   <Link href={`/shoppe/product/${item.id}`}>
-                    <span className="text-center text-lg lg:text-xl">{item.name}</span>
+                    <div className="relative flex h-20 w-20 shrink-0 grow-0 rounded-xl lg:h-48 lg:w-48">
+                      {item.image || (item.images && item.images.length > 0) ? (
+                        <Image
+                          style={{ objectFit: "contain" }}
+                          className="rounded-xl"
+                          src={item.image || item.images[0]}
+                          fill
+                          alt={item.name}
+                        ></Image>
+                      ) : (
+                        <span className="h-full w-full rounded-xl bg-red-200">
+                          <MissingImage />
+                        </span>
+                      )}
+                      <div className="absolute inset-0 h-full w-full" />
+                    </div>
                   </Link>
-                  <span className="text-md text-center uppercase">
-                    {item.size} {item.category}
-                  </span>
-                </div>
-                {/* COL 3 */}
-                <div className="hidden p-2 text-center text-lg lg:block lg:w-40">{item.artist}</div>
-                {/* COL 4 */}
-                <div className="hidden p-2 text-center text-xl lg:block lg:w-24 lg:text-2xl">
-                  {formatCurrencyString({
-                    value: item.price,
-                    currency: "USD",
-                    language: "en-US",
-                  })}
-                </div>
-                {/* COL 5 */}
-                <div className="flex items-center justify-center gap-5 p-2 lg:w-32">
-                  <EditProductQuantityButtons quantity={item.quantity} productId={item.id} />
-                </div>
-                {/* COL 6 */}
-                <div className="flex w-4 items-center justify-center p-2">
-                  <DeleteProductButton productId={item.id} />
+                  {/* COL 2 */}
+                  <div className="flex w-32 flex-col items-center gap-1 lg:w-72 lg:p-8">
+                    <Link href={`/shoppe/product/${item.id}`}>
+                      <span className="text-center text-lg lg:text-xl">{item.name}</span>
+                    </Link>
+                    <span className="text-md text-center uppercase">
+                      {item.size} {item.category}
+                    </span>
+                  </div>
+                  {/* COL 3 */}
+                  <div className="hidden p-2 text-center text-lg lg:block lg:w-40">{item.artist}</div>
+                  {/* COL 4 */}
+                  <div className="hidden p-2 text-center text-xl lg:block lg:w-24 lg:text-2xl">
+                    {formatCurrencyString({
+                      value: item.price,
+                      currency: "USD",
+                      language: "en-US",
+                    })}
+                  </div>
+                  {/* COL 5 */}
+                  <div className="flex items-center justify-center gap-5 p-2 lg:w-32">
+                    <EditProductQuantityButtons quantity={item.quantity} productId={item.id} />
+                  </div>
+                  {/* COL 6 */}
+                  <div className="flex w-4 items-center justify-center p-2">
+                    <DeleteProductButton productId={item.id} />
+                  </div>
                 </div>
               </div>
             ))}
