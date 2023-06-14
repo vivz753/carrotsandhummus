@@ -1,4 +1,4 @@
-import { Button, Carousel, LoadingOverlay, MissingImage, SparkleAnim, Tag } from "@components/core"
+import { Button, Carousel, Error404, LoadingOverlay, MissingImage, SparkleAnim, Tag } from "@components/core"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import { Product } from "@types"
@@ -15,7 +15,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const { id } = router.query
 
   const product = products?.find((product) => id === product.id) ?? ({} as Product)
-  const { name, price, image, artist, description, category, size, images } = product
+  const { name, price, image, artist, description, category, size, images, hidden } = product
 
   const userFriendlyPrice = currencyToString(price, product.currency)
 
@@ -37,6 +37,8 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
     <main>
       {!products ? (
         <LoadingOverlay />
+      ) : hidden ? (
+        <Error404 />
       ) : (
         <div className="flex h-full w-screen flex-col items-center justify-center px-8 pt-20">
           <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 lg:p-20">

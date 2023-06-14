@@ -35,9 +35,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [ ] links to artists?? to have their own map/page
 - [x] redirect page that tells that we've sent an email confirmation
   - [x] https://www.sanity.io/guides/building-ecommerce-sites-with-the-stripe-api
-- [ ] add tags
-  - [ ] for medium (oil, charcoal, digital, limited edition)
-- [ ] implement the hide property -- do not display products where hidden = true
+- [x] add tags
+- [ ] add soldOut attribute to Product
+- [x] implement the hide property -- do not display products where hidden = true
 - [ ] TEST:
   - [ ] the invoice emails + carrotsandhummus invoice email
   - [ ] 
