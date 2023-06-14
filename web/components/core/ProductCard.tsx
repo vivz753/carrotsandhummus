@@ -11,7 +11,7 @@ export const ProductCard: FC<{ product: Product }> = ({ product }) => {
   const userFriendlyPrice = currencyToString(price, product.currency)
 
   return (
-    <div className="group relative flex w-96 flex-col items-center gap-3 rounded-xl py-8 px-5 ring-2 ring-p5">
+    <div className="group relative flex w-96 flex-col items-center gap-3 rounded-xl py-8 px-8 ring-2 ring-p5">
       <Link href={`/shoppe/product/${product.id}`}>
         <span className="smooth-transition text-xl group-hover:scale-125">{name}</span>
       </Link>

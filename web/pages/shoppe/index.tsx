@@ -47,7 +47,7 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   return (
     <main>
       <div className="flex h-full w-screen flex-col pt-20">
-        <div className="flex flex-col items-center justify-center gap-5 px-8 text-center">
+        <div className="flex flex-col items-center justify-center gap-5 px-4 text-center">
           <span className="mt-20 mb-12 text-3xl">Ye Olde Shoppe</span>
           <span>{`The storekeeper doesn't look too happy, but at least they're not hostile.`}</span>
           <span>{`"I GUESS you can look around.."`}</span>
@@ -79,7 +79,7 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
                   onChange={(e) => setSearchValue(e.target.value)}
                 />
               </div>
-              <div className="flex w-full flex-row justify-between gap-5 lg:w-auto">
+              <div className="flex w-full flex-row justify-between lg:w-auto lg:gap-5">
                 <div className="flex flex-col items-start gap-1">
                   <span>Artist</span>
                   <Dropdown

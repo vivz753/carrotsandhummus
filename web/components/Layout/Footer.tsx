@@ -7,7 +7,7 @@ export const Footer: FC = () => (
     <Link href="/faq" className="underline">
       FAQ
     </Link>
-    <div className="flex flex-row items-center gap-5">
+    <div className="flex flex-col items-center lg:flex-row lg:gap-5">
       <Link href="https://instagram.com/carrotsandhummusart" className="flex flex-row gap-1">
         <InstagramIcon className="h-6 w-6 fill-white stroke-white" />
         @carrotsandhummusart

@@ -16,7 +16,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const { id } = router.query
 
   const product = products?.find((product) => id === product.id) ?? ({} as Product)
-  const { name, price, image, artist, description, category, size, images, hidden } = product
+  const { name, price, image, artist, description, category, size, images, tags, hidden } = product
 
   const userFriendlyPrice = currencyToString(price, product.currency)
 
@@ -44,14 +44,26 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
         <div className="flex h-full w-screen flex-col items-center justify-center px-8 pt-20">
           <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 lg:p-20">
             <div className="flex w-full flex-col gap-5">
-              <div className="flex  flex-col items-start gap-2">
+              <div className="flex flex-col items-start gap-2">
                 <span className="text-3xl">{name}</span>
                 {/* TODO make link for artist shop/filter w/ artist name */}
                 <span className="">by {artist}</span>
               </div>
-              <div className="flex flex-row gap-1">
-                <Tag className="bg-p4 text-white">{size}</Tag>
-                <Tag className="bg-p2 text-white">{category}</Tag>
+              <div className="flex flex-wrap items-center gap-1">
+                <div className="flex flex-row gap-1">
+                  <Tag className="bg-p4 text-white">{size}</Tag>
+                  <Tag className="bg-p2 text-white">{category}</Tag>
+                </div>
+                <span className="h-full justify-center">.</span>
+                {tags && tags.length && (
+                  <div className="flex flex-row gap-1">
+                    {tags.map((tag) => (
+                      <Tag className="bg-blue-400 text-white" size="sm">
+                        {tag}
+                      </Tag>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex flex-col items-center lg:flex-row lg:gap-20">
@@ -60,6 +72,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                 {images && images.length > 0 ? (
                   <Carousel size="lg" images={images ?? []} />
                 ) : (
+                  // TODO: Remove after image prop is removed
                   <div className="relative h-96 w-96 transform rounded-lg lg:h-[550px] lg:w-[550px]">
                     {image ? (
                       <Image
