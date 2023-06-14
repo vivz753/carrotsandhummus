@@ -51,7 +51,7 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
           </div>
           <span>{`"HMPH...."`}</span>
           {/* Search/Filter tools */}
-          <div className="group relative flex w-full justify-center border lg:w-3/4">
+          <div className="group relative flex w-full justify-center lg:w-3/4">
             {/* Pop-up GIF */}
             <div
               className={clsx(

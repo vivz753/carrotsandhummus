@@ -35,7 +35,7 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
     <div className={clsx("relative flex flex-col", size === "md" ? "w-72" : "w-72 lg:w-96")}>
       <div className="relative flex flex-row items-center">
         {images.length > 1 && (
-          <div className="absolute left-0 -translate-x-full p-3">
+          <div className="absolute left-0 -translate-x-full p-1 lg:p-3">
             <button onClick={shiftLeft} className="rounded-full bg-gray-400 p-1">
               <LeftCaretIcon className="h-4 w-4 fill-white" />
             </button>
@@ -68,7 +68,7 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
           </div>
         </div>
         {images.length > 1 && (
-          <div className="absolute right-0 translate-x-full p-3">
+          <div className="absolute right-0 translate-x-full p-1 lg:p-3">
             <button onClick={shiftRight} className="rounded-full bg-gray-400 p-1">
               <RightCaretIcon className="h-4 w-4 fill-white" />
             </button>

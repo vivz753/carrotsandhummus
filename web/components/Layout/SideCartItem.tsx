@@ -29,8 +29,10 @@ export const SideCartItem: FC<{
             <span>{name}</span>
           </div>
         </Link>
-        <EditProductQuantityButtons quantity={quantity} productId={productId} />
-        <DeleteProductButton productId={productId} />
+        <div className="ml-auto flex items-center gap-2">
+          <EditProductQuantityButtons quantity={quantity} productId={productId} />
+          <DeleteProductButton productId={productId} />
+        </div>
       </div>
     </div>
   )
