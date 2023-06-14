@@ -40,4 +40,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] implement the hide property -- do not display products where hidden = true
 - [ ] TEST:
   - [ ] the invoice emails + carrotsandhummus invoice email
-  - [ ] 
+
+- [x] add FAQ page

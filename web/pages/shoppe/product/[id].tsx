@@ -5,6 +5,7 @@ import { Product } from "@types"
 import { currencyToString } from "lib/utils"
 import { GetStaticProps, NextPage } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
 import { useShoppingCart } from "use-shopping-cart"
@@ -114,8 +115,14 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
               </div>
             )}
             <div className="flex flex-col gap-2">
-              <span className="text-xl">FAQ</span>
-              <span>Shipping is only available in the US. Delivery is estimated to take about 5-7 business days. </span>
+              <span className="text-xl">Important Shipping Info</span>
+              <span>Shipping is only available in the US. Delivery is estimated to take about 5-7 business days.</span>
+              <span>
+                For more info, see our{" "}
+                <Link href="/faq" className="underline">
+                  FAQ page
+                </Link>
+              </span>
             </div>
           </div>
         </div>
