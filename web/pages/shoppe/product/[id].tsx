@@ -39,7 +39,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
         <LoadingOverlay />
       ) : (
         <div className="flex h-full w-screen flex-col items-center justify-center px-8 pt-20">
-          <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border border-p5 p-8 lg:p-20">
+          <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 lg:p-20">
             <div className="flex w-full flex-col gap-5">
               <div className="flex  flex-col items-start gap-2">
                 <span className="text-3xl">{name}</span>
@@ -111,6 +111,10 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                 <span>{description}</span>
               </div>
             )}
+            <div className="flex flex-col gap-2">
+              <span className="text-xl">FAQ</span>
+              <span>Shipping is only available in the US. Delivery is estimated to take about 5-7 business days. </span>
+            </div>
           </div>
         </div>
       )}

@@ -10,13 +10,18 @@ import { useState } from "react"
 const filterByName = (products: Product[], input: string) => {
   if (!input) return products
 
-  return products.filter(
-    (product) =>
-      product.name
+  return products.filter((product) => {
+    return (
+      (product.name
         .toLowerCase()
         .split(" ")
-        .findIndex((token) => token.startsWith(input.toLowerCase())) !== -1
-  )
+        .findIndex((token) => token.startsWith(input.toLowerCase())) !== -1 ||
+        (product.tags && product.tags?.findIndex((tag) => tag.toLowerCase().startsWith(input.toLowerCase())) !== -1) ||
+        product.artist.toLowerCase().startsWith(input.toLowerCase()) ||
+        product.category?.toLowerCase().startsWith(input.toLowerCase())) &&
+      !product.hidden
+    )
+  })
 }
 
 const filterByArtist = (products: Product[], input: string) => {

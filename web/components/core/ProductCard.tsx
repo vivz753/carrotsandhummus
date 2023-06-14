@@ -35,24 +35,31 @@ export const ProductCard: FC<{ product: Product }> = ({ product }) => {
           <MissingImage />
         </div>
       )}
-      <div className="flex flex-row gap-1">
-        <Tag className="bg-p4 text-white">{size}</Tag>
-        <Tag className="bg-p2 text-white">{category}</Tag>
-      </div>
-      <span className="mb-5">{description}</span>
-      <AddButton product={product} />
-      {tags && tags.length && (
-        <div className="flex flex-row gap-1">
-          {tags.map((tag) => (
-            <Tag className="bg-red-500 text-white">{tag}</Tag>
-          ))}
-        </div>
-      )}
-      <div className="flex w-full flex-row justify-between">
-        <span>{userFriendlyPrice}</span>
+      <div className="mb-5 flex w-full justify-center">
         <span>by {artist}</span>
       </div>
-      <div className="flex w-full justify-center"></div>
+      <div className="flex h-full w-full flex-col items-center justify-between gap-8">
+        <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-row gap-1">
+            <Tag className="bg-p4 text-white">{size}</Tag>
+            <Tag className="bg-p2 text-white">{category}</Tag>
+          </div>
+          {tags && tags.length && (
+            <div className="flex flex-row gap-1">
+              {tags.map((tag) => (
+                <Tag className="bg-blue-400 text-white" size="sm">
+                  {tag}
+                </Tag>
+              ))}
+            </div>
+          )}
+        </div>
+        <span className="">{description}</span>
+        <div className="flex w-full flex-col gap-2">
+          <span className="text-md">{userFriendlyPrice}</span>
+          <AddButton product={product} />
+        </div>
+      </div>
     </div>
   )
 }
@@ -73,13 +80,13 @@ const AddButton: FC<{ product: Product }> = ({ product }) => {
   }
 
   return (
-    <Button variant="solid1" onClick={() => addToCart(product)}>
+    <Button variant="solid1" wide onClick={() => addToCart(product)}>
       {clicked ? (
         <SparkleAnim amount={10} duration={5000}>
           <span>Added!</span>
         </SparkleAnim>
       ) : (
-        <span>+</span>
+        <span>ADD TO CART</span>
       )}
     </Button>
   )
