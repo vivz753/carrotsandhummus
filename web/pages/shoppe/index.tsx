@@ -19,7 +19,7 @@ const filterByName = (products: Product[], input: string) => {
         (product.tags && product.tags?.findIndex((tag) => tag.toLowerCase().startsWith(input.toLowerCase())) !== -1) ||
         product.artist.toLowerCase().startsWith(input.toLowerCase()) ||
         product.category?.toLowerCase().startsWith(input.toLowerCase())) &&
-      !product.hidden
+      !product.hidden // don't show hidden items
     )
   })
 }

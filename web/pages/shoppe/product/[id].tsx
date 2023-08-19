@@ -16,7 +16,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const { id } = router.query
 
   const product = products?.find((product) => id === product.id) ?? ({} as Product)
-  const { name, price, image, artist, description, category, size, images, tags, hidden } = product
+  const { name, price, image, artist, description, category, size, images, tags, hidden, soldOut } = product
 
   const userFriendlyPrice = currencyToString(price, product.currency)
 
@@ -109,15 +109,21 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                       type="tel"
                     />
                   </div>
-                  <Button variant="solid1" onClick={addToCart}>
-                    {clicked ? (
-                      <SparkleAnim amount={10} duration={5000}>
-                        <span className="px-5 py-2">Added!</span>
-                      </SparkleAnim>
-                    ) : (
-                      <span className="px-5 py-2">Add To Cart</span>
-                    )}
-                  </Button>
+                  {soldOut ? (
+                    <Button variant="solid1" disabled>
+                      SOLD OUT
+                    </Button>
+                  ) : (
+                    <Button variant="solid1" onClick={addToCart}>
+                      {clicked ? (
+                        <SparkleAnim amount={10} duration={5000}>
+                          <span className="px-5 py-2">Added!</span>
+                        </SparkleAnim>
+                      ) : (
+                        <span className="px-5 py-2">Add To Cart</span>
+                      )}
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

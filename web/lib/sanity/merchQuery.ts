@@ -4,14 +4,13 @@
 //for syntax highlighting and the ability to run
 //groq queries within VScode
 //read more at https://www.npmjs.com/package/groq
-import groq from "groq";
+import groq from "groq"
 
 export const merchQuery = groq`
 *[_type=="merch"]{
     name,
     artist,
     price,
-    stock,
     description,
     size,
     category,
@@ -20,5 +19,6 @@ export const merchQuery = groq`
     "images": images[].asset->url,
     currency,
     hidden,
+    soldOut,
     tags
-  }`;
+  }`

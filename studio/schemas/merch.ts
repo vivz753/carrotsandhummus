@@ -50,13 +50,20 @@ export default {
       title: "Hidden",
       type: "boolean",
       description:
-        "Prevents this product from being published and publicly viewable on the website. Definitely do this if the product is out of stock indefinitely.",
+        "Prevents this product from being viewable on the website-- use when an item is out of stock and production has discontinued indefinitely.",
     },
     {
       name: "currency",
       title: "Currency",
       description: "Keep this 'USD'",
       type: "string",
+    },
+    {
+      name: "soldOut",
+      title: "Sold Out",
+      description:
+        "Prevents this product from being bought -- use when an item is out of stock and production has been discontinued momentarily",
+      type: "boolean",
     },
     {
       name: "images",

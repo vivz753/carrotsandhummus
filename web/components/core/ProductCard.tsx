@@ -7,7 +7,7 @@ import { FC, useState } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
 export const ProductCard: FC<{ product: Product }> = ({ product }) => {
-  const { name, price, image, artist, description, size, category, images, tags } = product
+  const { name, price, image, artist, description, size, category, images, tags, soldOut } = product
   const userFriendlyPrice = currencyToString(price, product.currency)
 
   return (
@@ -57,12 +57,18 @@ export const ProductCard: FC<{ product: Product }> = ({ product }) => {
         <span className="">{description}</span>
         <div className="flex w-full flex-col gap-2">
           <span className="text-md">{userFriendlyPrice}</span>
-          <AddButton product={product} />
+          {soldOut ? <SoldOutButton /> : <AddButton product={product} />}
         </div>
       </div>
     </div>
   )
 }
+
+const SoldOutButton: FC = () => (
+  <Button variant="solid1" wide disabled>
+    SOLD OUT
+  </Button>
+)
 
 const AddButton: FC<{ product: Product }> = ({ product }) => {
   const { addItem } = useShoppingCart()
@@ -80,7 +86,7 @@ const AddButton: FC<{ product: Product }> = ({ product }) => {
   }
 
   return (
-    <Button variant="solid1" wide onClick={() => addToCart(product)}>
+    <Button className="hover:scale-110" variant="solid1" wide onClick={() => addToCart(product)}>
       {clicked ? (
         <SparkleAnim amount={10} duration={5000}>
           <span>Added!</span>
