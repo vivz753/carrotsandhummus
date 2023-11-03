@@ -15,7 +15,6 @@ export const merchQuery = groq`
     size,
     category,
     "id": _id,
-    "image": image.asset->url,
     "images": images[].asset->url,
     currency,
     hidden,

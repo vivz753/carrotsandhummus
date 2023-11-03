@@ -16,7 +16,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const { id } = router.query
 
   const product = products?.find((product) => id === product.id) ?? ({} as Product)
-  const { name, price, image, artist, description, category, size, images, tags, hidden, soldOut } = product
+  const { name, price, artist, description, category, size, images, tags, hidden, soldOut } = product
 
   const userFriendlyPrice = currencyToString(price, product.currency)
 
