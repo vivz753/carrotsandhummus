@@ -7,7 +7,7 @@ import { FC, useState } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
 export const ProductCard: FC<{ product: Product }> = ({ product }) => {
-  const { name, price, image, artist, description, size, category, images, tags, soldOut } = product
+  const { name, price, artist, description, size, category, images, tags, soldOut } = product
   const userFriendlyPrice = currencyToString(price, product.currency)
 
   return (
@@ -17,19 +17,6 @@ export const ProductCard: FC<{ product: Product }> = ({ product }) => {
       </Link>
       {images && images?.length > 0 ? (
         <Carousel href={`/shoppe/product/${product.id}`} images={images ?? []} />
-      ) : image ? (
-        <Link href={`/shoppe/product/${product.id}`}>
-          <div className="relative h-72 w-72 rounded-lg">
-            <Image
-              fill
-              className="smooth-transition transform rounded-lg group-hover:scale-105"
-              style={{ objectFit: "contain" }}
-              alt={name}
-              src={image}
-            ></Image>
-            <div className="absolute inset-0 h-full w-full" />
-          </div>
-        </Link>
       ) : (
         <div className="relative h-72 w-72 rounded-lg">
           <MissingImage />

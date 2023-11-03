@@ -4,7 +4,6 @@ import { merchQuery } from "@lib/sanity/merchQuery"
 import { Product } from "@types"
 import { currencyToString } from "lib/utils"
 import { GetStaticProps, NextPage } from "next"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
@@ -72,19 +71,8 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                 {images && images.length > 0 ? (
                   <Carousel size="lg" images={images ?? []} />
                 ) : (
-                  // TODO: Remove after image prop is removed
                   <div className="relative h-96 w-96 transform rounded-lg lg:h-[550px] lg:w-[550px]">
-                    {image ? (
-                      <Image
-                        fill
-                        className="rounded-lg"
-                        style={{ objectFit: "contain" }}
-                        alt={name ?? "image_not_found"}
-                        src={image}
-                      ></Image>
-                    ) : (
-                      <MissingImage />
-                    )}
+                    <MissingImage />
                     {/* Prevents Right-clicking */}
                     <div className="absolute inset-0 h-full w-full" />
                   </div>

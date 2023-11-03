@@ -58,11 +58,11 @@ export const ShoppingCartSummary = () => {
                   {/* COL 1 */}
                   <Link href={`/shoppe/product/${item.id}`}>
                     <div className="relative flex h-20 w-20 shrink-0 grow-0 rounded-xl lg:h-48 lg:w-48">
-                      {item.image || (item.images && item.images.length > 0) ? (
+                      {item.images && item.images.length > 0 ? (
                         <Image
                           style={{ objectFit: "contain" }}
                           className="rounded-xl"
-                          src={item.image || item.images[0]}
+                          src={item.images[0]}
                           fill
                           alt={item.name}
                         ></Image>
