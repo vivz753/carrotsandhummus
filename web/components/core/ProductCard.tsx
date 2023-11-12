@@ -28,7 +28,7 @@ export const ProductCard: FC<{ product: Product }> = ({ product }) => {
       <div className="flex h-full w-full flex-col items-center justify-between gap-8">
         <div className="flex flex-col items-center gap-1">
           <div className="flex flex-row gap-1">
-            <Tag className="bg-p4 text-white">{size}</Tag>
+            {size && <Tag className="bg-p4 text-white">{size}</Tag>}
             <Tag className="bg-p2 text-white">{category}</Tag>
           </div>
           {tags && tags.length && (
