@@ -12,7 +12,7 @@ export const ConfirmationSummary: FC = () => {
   const { data, isLoading, error } = useSWR(session_id ? `/api/stripe/checkout/${session_id}` : null, async (url) => {
     try {
       const data = await fetch(url).then((res) => res.json())
-      console.log("sesion", data)
+      console.log("session", data)
       return data
     } catch (err) {
       throw new Error(
@@ -28,19 +28,16 @@ export const ConfirmationSummary: FC = () => {
   return isLoading ? (
     <LoadingOverlay />
   ) : (
-    <div className="my-20 flex flex-col gap-10 rounded-xl p-20 outline outline-2 outline-p5">
-      <span className="flex justify-center text-2xl">Thank you!</span>
+    <div className="my-20 flex flex-col gap-10 rounded-xl p-10 outline outline-2 outline-p5 sm:p-20">
       <div className="flex w-full flex-col justify-center gap-5 text-center ">
         <span className="flex justify-center">A confirmation email has been sent to:</span>
-        <div className="flex w-full flex-col justify-center gap-1 rounded-md p-3 text-center outline outline-1">
-          <span className="flex justify-center text-xl">{data?.customer_details?.name}</span>
-          <span className="flex justify-center">at</span>
+        <div className="flex w-full flex-col justify-center gap-1 rounded-md text-center">
           <span className="flex justify-center text-xl">{data?.customer_details?.email}</span>
         </div>
       </div>
       <div className="flex w-full flex-col justify-center gap-1 text-center ">
-        <span className="uppercase">Order confirmation number:</span>
-        <input disabled value={data?.payment_intent?.id} className="rounded-md p-3 outline outline-1" />
+        <span className="">Order number (keep for your records):</span>
+        <input disabled value={data?.payment_intent?.id} className="rounded-md" />
       </div>
       {/* <h2>Status: {data?.payment_intent?.status}</h2> */}
       {/* <h3>CheckoutSession response:</h3> */}

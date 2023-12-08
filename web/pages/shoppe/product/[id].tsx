@@ -50,8 +50,8 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
               </div>
               <div className="flex w-max flex-col items-start gap-1 lg:flex-wrap">
                 <div className="flex flex-row gap-1">
-                  <Tag className="bg-p4 text-white">{size}</Tag>
-                  <Tag className="bg-p2 text-white">{category}</Tag>
+                  {size && <Tag className="bg-p4 text-white">{size}</Tag>}
+                  {category && <Tag className="bg-p2 text-white">{category}</Tag>}
                 </div>
                 {tags && tags.length && <span className="hidden h-full justify-center lg:block">.</span>}
                 {tags && tags.length && (

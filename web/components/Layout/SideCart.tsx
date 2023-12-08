@@ -43,7 +43,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
             </>
           )}
         </div>
-        <div className="flex h-full w-full grow-0 flex-col justify-between rounded-bl-xl border-2 border-p5 bg-blue-200 px-5 py-5">
+        <div className="flex h-full w-full grow-0 flex-col justify-between rounded-bl-xl border-2 border-p5 bg-p1 px-5 py-5">
           {/* Items container */}
           {cartItems.length > 0 ? (
             <>

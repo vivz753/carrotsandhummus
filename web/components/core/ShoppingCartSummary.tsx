@@ -53,7 +53,7 @@ export const ShoppingCartSummary = () => {
           {cartDetails &&
             Object.values(cartDetails).map((item) => (
               <div className="flex flex-col gap-5">
-                <span className="h-[1px] w-full bg-p4" />
+                <span className="h-[1px] w-full bg-p2" />
                 <div key={item.id} className="grid max-w-full grid-flow-col items-center lg:auto-cols-auto">
                   {/* COL 1 */}
                   <Link href={`/shoppe/product/${item.id}`}>
