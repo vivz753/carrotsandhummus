@@ -1,10 +1,10 @@
 // Endpoint: `/api/stripe/checkout`
 // Type: POST
 // Purpose: Used to perform checkout order with Stripe
-import { NextApiRequest, NextApiResponse } from "next"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import getStripe from "@lib/stripe/getStripe"
+import { NextApiRequest, NextApiResponse } from "next"
 import Stripe from "stripe"
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -20,17 +20,41 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // fetch the items from Sanity
       const products = await client.fetch(merchQuery)
       // console.log("products", products)
-      console.log("req.body", req.body)
+      // console.log("req.body", req.body)
+      const keys = Object.keys(req.body)
 
-      const line_items = validateCartItems(products, req.body).map((itemToAddTax: any) => {
-        console.log('itemToAddTax', itemToAddTax)
+      const line_items = validateCartItems(products, req.body).map((item: any, i: number) => {
+        // console.log("req.body[i]", req.body[keys[i]])
+        const { images, size, category, price, artist, hidden, soldOut, tags } = req.body[keys[i]]
+        // console.log("itemToAddTax", item)
         return {
-          ...itemToAddTax,
+          ...item,
           tax_rates: [salesTaxId],
+          // for the line_items Schema see: https://stripe.com/docs/api/checkout/sessions/create
+          price_data: {
+            ...item.price_data,
+            product_data: {
+              ...item.price_data.product_data,
+              metadata: {
+                // include custom attributes product data so it can be documented on the Stripe Invoice
+                size,
+                category,
+                price,
+                artist,
+                hidden,
+                soldOut,
+                tags: tags && tags.toString(),
+              },
+              images,
+            },
+          },
         }
       })
 
-      console.log('line_items', line_items)
+      // console.log("line_items", line_items)
+      // line_items.forEach((item) => {
+      //   console.log(item.price_data.product_data)
+      // })
 
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
