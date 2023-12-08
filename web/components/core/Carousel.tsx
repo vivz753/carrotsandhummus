@@ -55,14 +55,22 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
           >
             <ConditionalWrapper condition={!!href} wrapper={(children) => <Link href={href ?? ""}>{children}</Link>}>
               <>
-                {images.map((url) => (
-                  <div
-                    key={url}
-                    className={clsx("relative inline-block", size === "md" ? "h-72 w-72" : "h-72 w-72 lg:h-96 lg:w-96")}
-                  >
-                    <Image fill style={{ objectFit: "contain" }} src={url} alt={url} />
-                  </div>
-                ))}
+                {images.length > 0 &&
+                  images.map((url) => (
+                    <div
+                      key={url}
+                      className={clsx(
+                        "relative inline-block",
+                        size === "md" ? "h-72 w-72" : "h-72 w-72 lg:h-96 lg:w-96"
+                      )}
+                    >
+                      {url ? (
+                        <Image fill style={{ objectFit: "contain" }} src={url} alt={url} />
+                      ) : (
+                        <div className="h-full w-full rounded-full bg-red-500" /> // ideally shouldn't render, but sometimes will if edited items aren't published, resulting in an array containing null object so it bypasses the MissingImage cmpnt. SOLUTION: publish all edited items
+                      )}
+                    </div>
+                  ))}
               </>
             </ConditionalWrapper>
           </div>
@@ -76,7 +84,7 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
         )}
       </div>
       {images.length > 1 && (
-        <div className="flex -translate-y-full flex-row justify-center gap-1">
+        <div className="mt-2 flex -translate-y-full flex-row justify-center gap-1">
           {Array(images.length)
             .fill(0)
             .map((x, i) => (
