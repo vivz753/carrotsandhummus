@@ -1,16 +1,18 @@
-import { Button, Carousel, Error404, LoadingOverlay, MissingImage, SparkleAnim, Tag } from "@components/core"
+import { Button, Carousel, Error404, LoadingOverlay, MissingImage, Modal, SparkleAnim, Tag } from "@components/core"
+import useComponentVisible from "@hooks/useComponentVisible"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import { Product } from "@types"
 import { currencyToString } from "lib/utils"
 import { GetStaticProps, NextPage } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 
 const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
-  const [clicked, setClicked] = useState(false)
+  const [addToCartClicked, setAddToCartClicked] = useState<boolean>(false)
   const router = useRouter()
   const { id } = router.query
 
@@ -20,18 +22,25 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const userFriendlyPrice = currencyToString(price, product.currency)
 
   const [productQuantity, setProductQuantity] = useState("1")
+  const [modalImg, setModalImg] = useState("")
+  const [modalRef, showModal, setShowModal] = useComponentVisible(false)
+
   const { addItem } = useShoppingCart()
 
   const addToCart = () => {
     addItem(product, { count: Number(productQuantity) })
 
-    if (!clicked) {
-      setClicked(true)
+    if (!addToCartClicked) {
+      setAddToCartClicked(true)
       setTimeout(() => {
-        setClicked(false)
+        setAddToCartClicked(false)
       }, 3000)
     }
   }
+
+  useEffect(() => {
+    console.log("modal", modalImg)
+  }, [modalImg])
 
   return (
     <main>
@@ -41,6 +50,15 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
         <Error404 />
       ) : (
         <div className="flex h-full w-screen flex-col items-center justify-center px-8 pt-20">
+          {showModal && (
+            <Modal>
+              <div onClick={(e) => console.log(e)} className="border-3 relative h-[90%] w-[75%] bg-white p-5">
+                <Image ref={modalRef} fill style={{ objectFit: "contain" }} src={modalImg} alt={modalImg} />
+                {/* TODO: implement working magnifier */}
+                {/* <ImageMagnifier src={modalImg} /> */}
+              </div>
+            </Modal>
+          )}
           <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 lg:p-20">
             <div className="flex w-full flex-col gap-5">
               <div className="flex flex-col items-start gap-2">
@@ -69,7 +87,14 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
               {/* COL 1 */}
               <div className="flex">
                 {images && images.length > 0 ? (
-                  <Carousel size="lg" images={images ?? []} />
+                  <Carousel
+                    onImageClick={(url) => {
+                      setShowModal((show) => !show)
+                      setModalImg(url)
+                    }}
+                    size="lg"
+                    images={images ?? []}
+                  />
                 ) : (
                   <div className="relative h-96 w-96 transform rounded-lg lg:h-[550px] lg:w-[550px]">
                     <MissingImage />
@@ -103,7 +128,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                     </Button>
                   ) : (
                     <Button variant="solid1" onClick={addToCart}>
-                      {clicked ? (
+                      {addToCartClicked ? (
                         <SparkleAnim amount={10} duration={5000}>
                           <span className="px-5 py-2">Added!</span>
                         </SparkleAnim>

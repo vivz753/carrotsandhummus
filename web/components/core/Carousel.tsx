@@ -3,13 +3,14 @@ import { LeftCaretIcon, RightCaretIcon } from "@components/icons"
 import clsx from "clsx"
 import Image from "next/image"
 import Link from "next/link"
-import { FC, useState } from "react"
+import { Dispatch, FC, SetStateAction, useState } from "react"
 
-export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" }> = ({
-  href,
-  images,
-  size = "md",
-}) => {
+export const Carousel: FC<{
+  onImageClick?: Dispatch<SetStateAction<string>>
+  href?: string
+  images: string[]
+  size?: "md" | "lg"
+}> = ({ href, onImageClick, images, size = "md" }) => {
   const [index, setIndex] = useState(0)
 
   const shiftLeft = () => {
@@ -65,7 +66,16 @@ export const Carousel: FC<{ href?: string; images: string[]; size?: "md" | "lg" 
                       )}
                     >
                       {url ? (
-                        <Image fill style={{ objectFit: "contain" }} src={url} alt={url} />
+                        <Image
+                          onClick={() => {
+                            onImageClick && onImageClick(url) // sets the image url for modal pop up
+                          }}
+                          className="cursor-pointer"
+                          fill
+                          style={{ objectFit: "contain" }}
+                          src={url}
+                          alt={url}
+                        />
                       ) : (
                         <div className="h-full w-full rounded-full bg-red-500" /> // ideally shouldn't render, but sometimes will if edited items aren't published, resulting in an array containing null object so it bypasses the MissingImage cmpnt. SOLUTION: publish all edited items
                       )}
