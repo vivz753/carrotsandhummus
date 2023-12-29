@@ -71,7 +71,6 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                   {size && <Tag className="bg-p4 text-white">{size}</Tag>}
                   {category && <Tag className="bg-p2 text-white">{category}</Tag>}
                 </div>
-                {tags && tags.length && <span className="hidden h-full justify-center lg:block">.</span>}
                 {tags && tags.length && (
                   <div className="flex flex-row gap-1">
                     {tags.map((tag) => (
