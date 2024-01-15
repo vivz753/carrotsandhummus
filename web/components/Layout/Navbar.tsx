@@ -1,12 +1,12 @@
 // import { Searchbar } from "@components/core"
 import { CartIcon } from "@components/icons"
 import Link from "next/link"
-import { Dispatch, FC, SetStateAction } from "react"
+import { FC } from "react"
 
-const navLabels = ["Home", "About"]
-const navLinks = ["/", "/about"]
+const navLabels = ["Home", "About", "Shoppe"]
+const navLinks = ["/", "/about", "/shoppe"]
 
-export const Navbar: FC<{ setSideCart: Dispatch<SetStateAction<boolean>> }> = ({ setSideCart }) => {
+export const Navbar: FC = () => {
   return (
     <div className="absolute top-0 z-20 flex h-20 max-h-20 w-full flex-row items-center justify-start gap-5 bg-p5 px-20">
       {navLabels.map((label, i) => (

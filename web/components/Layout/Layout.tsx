@@ -1,8 +1,8 @@
-import { FC, useState } from "react"
 import Head from "next/head"
+import { FC, useState } from "react"
+import { Footer } from "./Footer"
 import { Navbar } from "./Navbar"
 import { SideCart } from "./SideCart"
-import { Footer } from "./Footer"
 
 const Layout: FC<React.PropsWithChildren> = ({ children }) => {
   const [sideCart, setSideCart] = useState(false)
@@ -17,7 +17,7 @@ const Layout: FC<React.PropsWithChildren> = ({ children }) => {
       </Head>
       <main>
         <div className="relative flex w-full flex-col overflow-auto">
-          <Navbar setSideCart={setSideCart} />
+          <Navbar />
           {/* Page w/ content */}
           <div className="flex h-full min-h-screen">
             {children}
