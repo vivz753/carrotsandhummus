@@ -15,7 +15,7 @@ type Profile = {
 const profiles: Profile[] = [
   {
     name: "@natd0ge",
-    bio: "@natd0ge has been vandalizing her homework with doodles and hand-drawing cards for her family and friends for as long as she can remember. This event represents the first time she is putting her work out for public perception. She hopes people cherish the little shitposts that are her prints and stickers.",
+    bio: "@natd0ge has been vandalizing her homework with doodles and hand-drawing cards for her family and friends for as long as she can remember. The 2022 SJ Made Holiday Fair is the first time she is putting her work out for public perception. She hopes people cherish the little shitposts that are her prints and stickers.",
     img: {
       src: "/images/natalie.jpg",
       style: { objectFit: "cover" },
@@ -24,7 +24,7 @@ const profiles: Profile[] = [
   {
     name: "@carrotjuicelol",
     quote: `"When I get old and shrimpy, imma regret not pursuing art!"`,
-    bio: `Started as a weab who grew up with Disney Channel and Cartoon Network that lived off of Tumblr fan art, @carrotjuicelol is now the local art snob that attends museums and simps at the sight of Sergeant's work. Favorite artists include: Dana Terrace, marik_draw, Airi Pan.`,
+    bio: `Started as a weab that lived off of Tumblr fan art, @carrotjuicelol is now your local neighborhood art snob that attends museums and spends most of her time at art studios. Favorite artists include: Dana Terrace, @marik_draw, Steve Ahn.`,
     img: {
       src: "/images/vivian.jpg",
       style: { objectFit: "scale-down" },
@@ -32,10 +32,19 @@ const profiles: Profile[] = [
   },
   {
     name: "Ray",
-    bio: "",
+    bio: ``,
     quote: `"Ever since I moved to my own place, one of my favorite things has been receiving coupons and letters in the mail. I recommend sending my things in the mail to people you care about. Wish you have a nice day :)"`,
     img: {
       src: "/images/ray.jpg",
+      style: { objectFit: "cover" },
+    },
+  },
+  {
+    name: "@vivs_petals",
+    bio: "@vivis_petals started dabbling in bracelets during COVID then just never stopped. Now her favorite things to do is to spend time with her pets and go to craft stores. She has offically joined the oldies club by going to a crafts store every other day. She has been vending on Saturdays in Davis at the Davis Street Market but is now venturing online! I hope her creations can bring you some joy c:",
+    quote: `"i love bread"`,
+    img: {
+      src: "/images/vivs_petals.jpg",
       style: { objectFit: "cover" },
     },
   },
