@@ -66,7 +66,7 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
             {/* Pop-up GIF */}
             <div
               className={clsx(
-                "absolute left-20 top-0 z-0 h-20 w-20 translate-y-0 transform opacity-0 transition-all group-focus-within:z-[2] group-focus-within:-translate-y-[70%] group-focus-within:opacity-100 group-hover:z-[2] group-hover:-translate-y-[70%] group-hover:opacity-100"
+                "absolute left-5 top-0 z-0 h-20 w-20 translate-y-0 transform opacity-0 transition-all group-focus-within:z-[2] group-focus-within:-translate-y-[70%] group-focus-within:opacity-100 group-hover:z-[2] group-hover:-translate-y-[70%] group-hover:opacity-100 sm:left-20"
               )}
             >
               <Image
