@@ -108,7 +108,7 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
               {/* TODO: price ascending/descending */}
             </div>
           </div>
-          <div className="flex w-full flex-wrap justify-center gap-10 p-20">
+          <div className="flex w-full flex-wrap justify-center gap-10 lg:p-20">
             {filteredProducts.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}

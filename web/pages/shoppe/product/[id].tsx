@@ -1,5 +1,6 @@
 import { Button, Carousel, Error404, LoadingOverlay, MissingImage, Modal, SparkleAnim, Tag } from "@components/core"
 import useComponentVisible from "@hooks/useComponentVisible"
+import {LeftCaretIcon} from "@components/icons"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import { Product } from "@types"
@@ -51,7 +52,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
       ) : (
         <div className="flex h-full w-screen flex-col items-center justify-center px-8 pt-20">
           {showModal && (
-            <Modal>
+            <Modal setShowModal={setShowModal}>
               <div onClick={(e) => console.log(e)} className="border-3 relative h-[90%] w-[75%] bg-white p-5">
                 <Image ref={modalRef} fill style={{ objectFit: "contain" }} src={modalImg} alt={modalImg} />
                 {/* TODO: implement working magnifier */}
@@ -59,6 +60,11 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
               </div>
             </Modal>
           )}
+          <div className="mr-auto mt-10 w-full">
+            <Button href="/shoppe" variant="solid1">
+            <LeftCaretIcon className="h-4 w-4 fill-white" />{` BACK`}
+            </Button>
+          </div>
           <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 lg:p-20">
             <div className="flex w-full flex-col gap-5">
               <div className="flex flex-col items-start gap-2">
