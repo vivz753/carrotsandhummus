@@ -2,6 +2,7 @@ import { Button } from "@components/core"
 import { CartIcon, LeftCaretIcon, RightCaretIcon } from "@components/icons"
 import clsx from "clsx"
 import Image from "next/image"
+import { useRouter } from "next/router"
 import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from "react"
 import { useShoppingCart } from "use-shopping-cart"
 import { SideCartItem } from "./SideCartItem"
@@ -72,7 +73,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
               </div>
             </>
           ) : (
-            <EmptyCartContents />
+            <EmptyCartContents setView={setView} />
           )}
         </div>
       </div>
@@ -104,16 +105,24 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
   )
 }
 
-const EmptyCartContents: FC = () => (
-  <div className="flex h-full flex-col items-center justify-center gap-5">
-    <span>{`"hey,"`}</span>
-    <div className="relative h-48 w-48">
-      <Image src="/images/angry/magnifiedcat.JPG" fill style={{ objectFit: "contain" }} alt="angry-shopkeeper" />
+const EmptyCartContents: FC<{ setView: Dispatch<SetStateAction<boolean>> }> = ({ setView }) => {
+  const router = useRouter()
+
+  return (
+    <div className="flex h-full flex-col items-center justify-center gap-5">
+      <span>{`"hey,"`}</span>
+      <div className="relative h-48 w-48">
+        <Image src="/images/angry/magnifiedcat.JPG" fill style={{ objectFit: "contain" }} alt="angry-shopkeeper" />
+      </div>
+      <span>Uh oh, the shopkeeper looks angry... </span>
+      <span>{`"go buy something, or... or... get out here!!"`}</span>
+      <Button
+        onClick={() => setView(false)}
+        href={router.pathname.endsWith("shoppe") ? "" : "/shoppe"}
+        className="mt-24"
+      >
+        {`Fine, I'll go browse the items...`}
+      </Button>
     </div>
-    <span>Uh oh, the shopkeeper looks angry... </span>
-    <span>{`"go buy something, or... or... get out here!!"`}</span>
-    <Button href="/shoppe" className="mt-24">
-      Okay...
-    </Button>
-  </div>
-)
+  )
+}

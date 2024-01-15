@@ -33,7 +33,10 @@ export const Carousel: FC<{
   }
 
   return (
-    <div className={clsx("relative flex flex-col", size === "md" ? "w-72" : "w-72 lg:w-96")}>
+    <div
+      onClick={(e) => e.preventDefault()}
+      className={clsx("relative flex flex-col", size === "md" ? "w-72" : "w-72 lg:w-96")}
+    >
       <div className="relative flex flex-row items-center">
         {images.length > 1 && (
           <div className="absolute left-0 -translate-x-full p-1 lg:p-3">
