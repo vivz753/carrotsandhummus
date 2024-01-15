@@ -34,7 +34,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [x] click to view large/inspect
 - [x] add BACK button to product pg
 - [ ] links to artists?? to have their own map/page
-- [ ] make sure images can't be right-click saved
+- [x] make sure images can't be right-click saved
 - [x] redirect page that tells that we've sent an email confirmation
   - [x] https://www.sanity.io/guides/building-ecommerce-sites-with-the-stripe-api
 - [x] add tags

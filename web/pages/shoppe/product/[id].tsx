@@ -1,6 +1,6 @@
 import { Button, Carousel, Error404, LoadingOverlay, MissingImage, Modal, SparkleAnim, Tag } from "@components/core"
+import { LeftCaretIcon } from "@components/icons"
 import useComponentVisible from "@hooks/useComponentVisible"
-import {LeftCaretIcon} from "@components/icons"
 import { client } from "@lib/sanity/client"
 import { merchQuery } from "@lib/sanity/merchQuery"
 import { Product } from "@types"
@@ -54,7 +54,9 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
           {showModal && (
             <Modal setShowModal={setShowModal}>
               <div onClick={(e) => console.log(e)} className="border-3 relative h-[90%] w-[75%] bg-white p-5">
-                <Image ref={modalRef} fill style={{ objectFit: "contain" }} src={modalImg} alt={modalImg} />
+                <Image fill style={{ objectFit: "contain" }} src={modalImg} alt={modalImg} />
+                {/* Prevents Right-clicking */}
+                <div ref={modalRef} className="absolute inset-0 h-full w-full" />
                 {/* TODO: implement working magnifier */}
                 {/* <ImageMagnifier src={modalImg} /> */}
               </div>
@@ -62,7 +64,8 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
           )}
           <div className="mr-auto mt-10 w-full">
             <Button href="/shoppe" variant="solid1">
-            <LeftCaretIcon className="h-4 w-4 fill-white" />{` BACK`}
+              <LeftCaretIcon className="h-4 w-4 fill-white" />
+              {` BACK`}
             </Button>
           </div>
           <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 lg:p-20">
@@ -103,8 +106,6 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
                 ) : (
                   <div className="relative h-96 w-96 transform rounded-lg lg:h-[550px] lg:w-[550px]">
                     <MissingImage />
-                    {/* Prevents Right-clicking */}
-                    <div className="absolute inset-0 h-full w-full" />
                   </div>
                 )}
               </div>

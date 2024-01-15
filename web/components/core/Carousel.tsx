@@ -66,19 +66,17 @@ export const Carousel: FC<{
                       )}
                     >
                       {url ? (
-                        <Image
-                          onClick={() => {
-                            onImageClick && onImageClick(url) // sets the image url for modal pop up
-                          }}
-                          className="cursor-pointer"
-                          fill
-                          style={{ objectFit: "contain" }}
-                          src={url}
-                          alt={url}
-                        />
+                        <Image fill style={{ objectFit: "contain" }} src={url} alt={url} />
                       ) : (
                         <div className="h-full w-full rounded-full bg-red-500" /> // ideally shouldn't render, but sometimes will if edited items aren't published, resulting in an array containing null object so it bypasses the MissingImage cmpnt. SOLUTION: publish all edited items
                       )}
+                      {/* Prevents Right-clicking */}
+                      <div
+                        className="absolute inset-0 h-full w-full cursor-pointer"
+                        onClick={() => {
+                          onImageClick && onImageClick(url) // sets the image url for modal pop up
+                        }}
+                      />
                     </div>
                   ))}
               </>
