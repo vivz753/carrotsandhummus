@@ -62,13 +62,13 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
               </div>
             </Modal>
           )}
-          <div className="mr-auto mt-10 w-full">
+          <div className="mr-auto mt-4 w-full">
             <Button href="/shoppe" variant="solid1">
               <LeftCaretIcon className="h-4 w-4 fill-white" />
               {` BACK`}
             </Button>
           </div>
-          <div className="my-20 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 lg:p-20">
+          <div className="my-8 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 sm:my-20 lg:p-20">
             <div className="flex w-full flex-col gap-5">
               <div className="flex flex-col items-start gap-2">
                 <span className="text-3xl">{name}</span>

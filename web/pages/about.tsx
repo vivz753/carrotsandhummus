@@ -4,7 +4,7 @@ import { CSSProperties } from "react"
 
 type Profile = {
   name: string
-  bio: string
+  bio?: string
   quote?: string
   img: {
     src: string
@@ -26,13 +26,13 @@ const profiles: Profile[] = [
     quote: `"When I get old and shrimpy, imma regret not pursuing art!"`,
     bio: `Started as a weab that lived off of Tumblr fan art, @carrotjuicelol is now your local neighborhood art snob that attends museums and spends most of her time at art studios. Favorite artists include: Dana Terrace, @marik_draw, Steve Ahn.`,
     img: {
-      src: "/images/vivian.jpg",
-      style: { objectFit: "scale-down" },
+      src: "/images/carrotjuicelol.jpg",
+      style: { objectFit: "cover" },
     },
   },
   {
     name: "Ray",
-    bio: ``,
+    // bio: ``,
     quote: `"Ever since I moved to my own place, one of my favorite things has been receiving coupons and letters in the mail. I recommend sending my things in the mail to people you care about. Wish you have a nice day :)"`,
     img: {
       src: "/images/ray.jpg",
@@ -69,7 +69,7 @@ const About: NextPage = () => {
                 ></Image>
               </div>
               {profile.quote && <p className="text-center">{profile.quote}</p>}
-              <p className="w-full whitespace-normal">{profile.bio}</p>
+              {profile.bio && <p className="w-full whitespace-normal">{profile.bio}</p>}
             </div>
           ))}
         </div>
