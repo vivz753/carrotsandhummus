@@ -50,7 +50,7 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
       ) : hidden ? (
         <Error404 />
       ) : (
-        <div className="flex h-full w-screen flex-col items-center justify-center px-8 pt-20">
+        <div className="flex h-full w-screen flex-col items-center justify-center px-2 pt-20">
           {showModal && (
             <Modal setShowModal={setShowModal}>
               <div onClick={(e) => console.log(e)} className="border-3 relative h-[90%] w-[75%] bg-white p-5">
@@ -62,13 +62,13 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
               </div>
             </Modal>
           )}
-          <div className="mr-auto mt-4 w-full">
+          <div className="mt-4 w-full">
             <Button href="/shoppe" variant="solid1">
               <LeftCaretIcon className="h-4 w-4 fill-white" />
               {` BACK`}
             </Button>
           </div>
-          <div className="my-8 flex w-fit max-w-[1000px] flex-col gap-10 rounded-xl border-4 border-p5 p-8 sm:my-20 lg:p-20">
+          <div className="my-8 flex w-fit max-w-[1000px] flex-col items-center gap-10 rounded-xl border-4 border-p5 p-8 sm:my-20 lg:w-3/4 lg:max-w-full lg:py-16 lg:px-32">
             <div className="flex w-full flex-col gap-5">
               <div className="flex flex-col items-start gap-2">
                 <span className="text-3xl">{name}</span>
@@ -147,12 +147,12 @@ const ProductPage: NextPage<{ products: Array<Product> }> = ({ products }) => {
               </div>
             </div>
             {description && (
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 lg:mr-auto">
                 <span className="text-xl">Description</span>
                 <span>{description}</span>
               </div>
             )}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 lg:mr-auto">
               <span className="text-xl">Important Shipping Info</span>
               <span>Shipping is only available in the US. Delivery is estimated to take about 5-7 business days.</span>
               <span>
