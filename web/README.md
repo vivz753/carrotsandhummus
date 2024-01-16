@@ -30,6 +30,7 @@ Meta Features:
 UI Features:
 - [ ] side search button that fixes to page
 - [ ] animated speech npc dialogues (blue chat bubble outline)
+- [ ] random funny cat quotes to display (dynamic messages abt today's date, weather, etc. would b cool)
 - [x] add shopping cart functionality
 - [x] add full page view w/ description
 - [x] add search bar
