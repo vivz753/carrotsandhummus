@@ -28,6 +28,8 @@ Meta Features:
 
 
 UI Features:
+- [ ] side search button that fixes to page
+- [ ] animated speech npc dialogues (blue chat bubble outline)
 - [x] add shopping cart functionality
 - [x] add full page view w/ description
 - [x] add search bar

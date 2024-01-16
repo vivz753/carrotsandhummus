@@ -53,14 +53,18 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   return (
     <main>
       <div className="flex h-full w-screen flex-col pt-20">
-        <div className="flex flex-col items-center justify-center gap-5 px-4 text-center">
-          <span className="mt-20 mb-12 text-3xl">Ye Olde Shoppe</span>
-          <span>{`The storekeeper doesn't look too happy, but at least they're not hostile.`}</span>
-          <span>{`"I GUESS you can look around.."`}</span>
-          <div className="relative h-48 w-48">
-            <Image src="/images/angry/doomsdaycat.JPG" alt="doomsdaycat" fill style={{ objectFit: "contain" }} />
+        <div className="flex flex-col items-center justify-center gap-5 px-4 py-20 text-center">
+          <div className="relative h-48 w-48 rounded-3xl">
+            <Image
+              src="/images/angry/doomsdaycat.JPG"
+              alt="doomsdaycat"
+              className="rounded-3xl"
+              fill
+              style={{ objectFit: "cover" }}
+            />
           </div>
-          <span>{`"HMPH...."`}</span>
+          <span>{`"HMPH.... I GUESS you can look around.."`}</span>
+          <span>{`The storekeeper doesn't look too happy, but at least they're not hostile.`}</span>
           {/* Search/Filter tools */}
           <div className="group relative flex w-full justify-center lg:w-3/4">
             {/* Pop-up GIF */}

@@ -6,9 +6,9 @@ export const Error404: FC = () => {
   return (
     <div className="flex h-full w-screen flex-col items-center justify-center gap-10">
       <span className="text-3xl text-red-500">404 Error: Not Found</span>
-      <div className="relative h-72 w-72">
+      <div className="relative h-72 w-72 rounded-3xl">
         <Image
-          className="rounded-xl"
+          className="rounded-3xl"
           src="/images/angry/magnifiedcat.JPG"
           alt="highness-cat"
           fill

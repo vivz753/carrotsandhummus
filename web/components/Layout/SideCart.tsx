@@ -112,7 +112,13 @@ const EmptyCartContents: FC<{ setView: Dispatch<SetStateAction<boolean>> }> = ({
     <div className="flex h-full flex-col items-center justify-center gap-5">
       <span>{`"hey,"`}</span>
       <div className="relative h-48 w-48">
-        <Image src="/images/angry/magnifiedcat.JPG" fill style={{ objectFit: "contain" }} alt="angry-shopkeeper" />
+        <Image
+          src="/images/angry/magnifiedcat.JPG"
+          className="rounded-3xl"
+          fill
+          style={{ objectFit: "cover" }}
+          alt="angry-shopkeeper"
+        />
       </div>
       <span>Uh oh, the shopkeeper looks angry... </span>
       <span>{`"go buy something, or... or... get out here!!"`}</span>
