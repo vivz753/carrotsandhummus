@@ -6,7 +6,7 @@ import { FC } from "react"
 export const Footer: FC = () => (
   <div className="flex h-56 flex-col-reverse items-center justify-between bg-p5 p-8 text-white sm:flex-row sm:px-20 lg:h-36 lg:items-start lg:justify-start lg:gap-10">
     <Link href="/" className=" flex h-20 w-72 flex-row justify-center lg:h-full">
-      <div className="relative h-20 w-32 lg:h-full lg:w-48">
+      <div className="relative h-20 w-36 lg:h-full lg:w-48">
         <Image
           fill
           style={{ objectFit: "cover" }}
