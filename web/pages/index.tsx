@@ -4,8 +4,8 @@ import Image from "next/image"
 
 const Home: NextPage = () => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center border pt-20">
-      <div className="my-auto flex flex-col items-center gap-5 pt-20">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center border pt-20">
+      <div className="my-auto flex flex-col items-center gap-5 py-16 sm:py-32">
         <span>{`* "moew"`}</span>
         <div className="relative h-72 w-72">
           <Image

@@ -34,7 +34,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
         )}
       >
         <div className="top-0 flex w-full shrink-0 items-center justify-center rounded-tl-xl bg-p5">
-          <span className="absolute text-center text-white">Ye Olde Cart</span>
+          <span className="absolute text-center text-white">Shopping Cart</span>
           {view && (
             <>
               <Button onClick={() => setView(false)} variant="solid2" className="m-2 mr-auto">
