@@ -10,8 +10,8 @@ const navLinks = ["/about", "/shoppe"]
 export const Navbar: FC = () => {
   return (
     <div className="absolute top-0 z-20 flex h-20 max-h-20 w-full flex-row items-center justify-start gap-5 bg-p5 px-5 sm:px-12">
-      <Link href="/" className=" flex h-full w-64 flex-row justify-center">
-        <div className="relative h-full w-36">
+      <Link href="/" className=" flex h-14 w-56 flex-row justify-center sm:h-full sm:w-64">
+        <div className="relative h-14 w-24 sm:h-full sm:w-36">
           <Image
             fill
             style={{ objectFit: "cover" }}
@@ -19,7 +19,7 @@ export const Navbar: FC = () => {
             src="/images/carrotsandhummustitlelogo.png"
           ></Image>
         </div>
-        <div className="relative h-full w-20">
+        <div className="relative h-14 w-14 sm:h-full sm:w-20">
           <Image
             fill
             style={{ objectFit: "cover" }}
