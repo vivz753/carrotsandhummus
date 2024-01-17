@@ -20,7 +20,7 @@ export default function PreviewPage() {
   return (
     <div className="flex h-full min-h-screen w-screen flex-col items-center justify-center pt-20">
       {transactionSuccess && <ConfirmationSummary />}
-      <div className="my-20 flex w-full flex-col items-center gap-5 px-5">
+      <div className="my-10 flex w-full flex-col items-center gap-5 px-5 sm:my-20">
         {transactionSuccess ? (
           <NpcDialogue
             title={`The cashier gives you an awkward, but polite smile.`}

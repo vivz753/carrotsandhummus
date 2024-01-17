@@ -30,7 +30,7 @@ export const ConfirmationSummary: FC = () => {
   return isLoading ? (
     <LoadingOverlay />
   ) : (
-    <div className="my-20 flex flex-col gap-10 rounded-xl p-10 outline outline-2 outline-p5 sm:p-20">
+    <div className="m-4 my-8 flex flex-col gap-10 rounded-xl p-8 outline outline-2 outline-p5 sm:my-20 sm:p-20">
       <div className="flex w-full flex-col items-center justify-center gap-5 text-center">
         <span className="flex justify-center text-3xl">Thank you for shopping with us!</span>
         <Link href="/" className="flex h-20 w-72 flex-row justify-center lg:h-24">
@@ -58,8 +58,8 @@ export const ConfirmationSummary: FC = () => {
         </div> */}
       </div>
       <div className="flex w-full flex-col items-start justify-center gap-1 text-center ">
-        <span className="">Order number:</span>
-        <input disabled value={data?.payment_intent?.id} className="rounded-md" />
+        <span className="w-full">Order number:</span>
+        <input disabled value={data?.payment_intent?.id} className="w-full rounded-md" />
       </div>
       {/* <h2>Status: {data?.payment_intent?.status}</h2> */}
       {/* <h3>CheckoutSession response:</h3> */}

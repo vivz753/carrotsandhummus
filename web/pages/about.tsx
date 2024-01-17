@@ -55,7 +55,7 @@ const About: NextPage = () => {
     <div className="flex h-full w-screen flex-col items-center justify-center pt-20">
       <div className="my-20 flex flex-col items-center gap-20">
         <span className="text-2xl">Meet the Artists</span>
-        <div className="flex w-full justify-center gap-24 px-[10%] sm:flex-wrap">
+        <div className="flex w-full flex-col justify-center gap-24 px-[10%] sm:flex-wrap">
           {profiles.map((profile) => (
             <div className="my-5 flex w-full flex-col items-center gap-10 sm:w-96">
               <span>{profile.name}</span>
