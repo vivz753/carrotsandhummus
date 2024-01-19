@@ -12,20 +12,19 @@ const filterByName = (products: Product[], input: string) => {
 
   return products.filter((product) => {
     return (
-      (product.name
+      product.name
         .toLowerCase()
         .split(" ")
         .findIndex((token) => token.startsWith(input.toLowerCase()) || input.toLowerCase().includes(token)) !== -1 || // second condition for inputs w 1 token + a space
-        product.name.toLowerCase().includes(input.toLowerCase()) || // for inputs w/ multiple tokens + spaces
-        (product.tags &&
-          product.tags?.findIndex(
-            (tag) => tag.toLowerCase().startsWith(input.toLowerCase()) || input.toLowerCase().includes(tag)
-          ) !== -1) ||
-        input.toLowerCase().includes(product.artist.toLowerCase()) ||
-        product.artist.toLowerCase().startsWith(input.toLowerCase()) ||
-        input.toLowerCase().includes(product.category?.toLowerCase() || "") ||
-        product.category?.toLowerCase().startsWith(input.toLowerCase())) &&
-      !product.hidden // don't show hidden items
+      product.name.toLowerCase().includes(input.toLowerCase()) || // for inputs w/ multiple tokens + spaces
+      (product.tags &&
+        product.tags?.findIndex(
+          (tag) => tag.toLowerCase().startsWith(input.toLowerCase()) || input.toLowerCase().includes(tag)
+        ) !== -1) ||
+      input.toLowerCase().includes(product.artist.toLowerCase()) ||
+      product.artist.toLowerCase().startsWith(input.toLowerCase()) ||
+      input.toLowerCase().includes(product.category?.toLowerCase() || "") ||
+      product.category?.toLowerCase().startsWith(input.toLowerCase())
     )
   })
 }
@@ -48,7 +47,10 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const [artist, setArtist] = useState("all")
   const [searchValue, setSearchValue] = useState("")
 
-  const filteredProducts = filterByCategory(filterByArtist(filterByName(products, searchValue), artist), category)
+  const filteredProducts = filterByCategory(
+    filterByArtist(filterByName(products, searchValue), artist),
+    category
+  ).filter((product) => !product.hidden) // don't show hidden products
 
   return (
     <main>
