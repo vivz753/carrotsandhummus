@@ -50,7 +50,8 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const filteredProducts = filterByCategory(
     filterByArtist(filterByName(products, searchValue), artist),
     category
-  ).filter((product) => !product.hidden) // don't show hidden products
+  ).filter((product) => !product.hidden // don't show hidden products
+  ).filter((product) => !product.tags?.includes("nsfw")) // hide NSFW products for portfolio purposes
 
   return (
     <main>
