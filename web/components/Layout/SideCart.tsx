@@ -56,7 +56,7 @@ export const SideCart: FC<{ view: boolean; setView: Dispatch<SetStateAction<bool
                     name={data.name}
                     category={data.category}
                     quantity={data.quantity}
-                    image={data.images[0] ?? ""}
+                    image={data.images && data.images[0] ? data.images[0] : ""}
                     price={data.price}
                   />
                 ))}
