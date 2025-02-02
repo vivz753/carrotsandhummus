@@ -4,7 +4,7 @@ import { Product } from "@types"
 import clsx from "clsx"
 import { GetStaticProps, NextPage } from "next"
 import Image from "next/image"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 const filterByName = (products: Product[], input: string) => {
   if (!input) return products
@@ -45,13 +45,21 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const artists = ["Ray", "@carrotjuicelol", "@natd0ge", "@vivs_petals", "all"]
   const [artist, setArtist] = useState("all")
   const [searchValue, setSearchValue] = useState("")
+  const [debouncedInputValue, setDebouncedInputValue] = useState("")
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedInputValue(searchValue)
+    }, 200)
+    return () => clearTimeout(timeoutId)
+  }, [searchValue])
 
   const filteredProducts = useMemo(
     () =>
-      filterByCategory(filterByArtist(filterByName(products, searchValue), artist), category).filter(
+      filterByCategory(filterByArtist(filterByName(products, debouncedInputValue), artist), category).filter(
         (product) => !product.hidden // don't show hidden products
       ),
-    [category, artist, products, searchValue]
+    [category, artist, products, debouncedInputValue]
   )
 
   return (
