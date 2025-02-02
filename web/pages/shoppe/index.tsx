@@ -1,11 +1,10 @@
 import { Dropdown, ProductCard, Searchbar } from "@components/core"
-import { client } from "@lib/sanity/client"
-import { merchQuery } from "@lib/sanity/merchQuery"
+import { loadProducts } from "@lib/sanity/loadProducts"
 import { Product } from "@types"
 import clsx from "clsx"
 import { GetStaticProps, NextPage } from "next"
 import Image from "next/image"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 const filterByName = (products: Product[], input: string) => {
   if (!input) return products
@@ -47,10 +46,13 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
   const [artist, setArtist] = useState("all")
   const [searchValue, setSearchValue] = useState("")
 
-  const filteredProducts = filterByCategory(
-    filterByArtist(filterByName(products, searchValue), artist),
-    category
-  ).filter((product) => !product.hidden) // don't show hidden products
+  const filteredProducts = useMemo(
+    () =>
+      filterByCategory(filterByArtist(filterByName(products, searchValue), artist), category).filter(
+        (product) => !product.hidden // don't show hidden products
+      ),
+    [category, artist, products, searchValue]
+  )
 
   return (
     <main>
@@ -128,7 +130,7 @@ const Shoppe: NextPage<{ products: Array<Product> }> = ({ products }) => {
 export default Shoppe
 
 export const getStaticProps: GetStaticProps<{ products: Array<Product> }> = async () => {
-  const products = await client.fetch(merchQuery)
+  const products = await loadProducts()
 
   return {
     props: {
